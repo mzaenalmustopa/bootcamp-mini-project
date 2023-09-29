@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Matakuliah</h1>
+<form th:action="@{~/matakuliah/update}" method="post" th:object="${matakuliah}">
+    <input type="hidden" id="id" th:field="*{id}">
+
+    <label>Code</label><br>
+    <input type="text" name="code" id="code" th:value="${matakuliah.code}"><br>
+
+    <label>Name</label><br>
+    <input type="text" name="name" id="name" th:value="${matakuliah.name}"><br>
+
+    <label>SKS</label><br>
+    <input type="text" name="sks" id="sks" th:value="${matakuliah.sks}"><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>

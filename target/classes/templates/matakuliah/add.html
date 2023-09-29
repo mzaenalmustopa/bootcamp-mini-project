@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add Matakuliah</h1>
+<form th:action="@{~/matakuliah/save}" method="post">
+
+  <label>Code</label><br>
+  <input type="text" id="code" name="code"><br>
+
+  <label>Name</label><br>
+  <input type="text" id="name" name="name"><br>
+
+  <label>SKS</label><br>
+  <input type="text" id="sks" name="sks"><br>
+
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>

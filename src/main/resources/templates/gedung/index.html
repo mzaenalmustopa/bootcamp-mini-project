@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Index Gedung</h1>
+<a th:href="@{~/gedung/add}">Add New Gedung</a>
+<table>
+  <thead>
+  <tr>
+    <td>Code</td>
+    <td>Name</td>
+    <td>Jumlah Lantai</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="gedung :${gedungList}">
+    <td th:text="${gedung.code}"></td>
+    <td th:text="${gedung.name}"></td>
+    <td th:text="${gedung.jmlLantai}"></td>
+    <td>
+      <a th:href="@{~/gedung/edit/{id}(id=${gedung.id})}">Edit</a>
+      <a th:href="@{~/gedung/detail/{id}(id=${gedung.id})}">Detail</a>
+      <a th:href="@{~/gedung/delete/{id}(id=${gedung.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

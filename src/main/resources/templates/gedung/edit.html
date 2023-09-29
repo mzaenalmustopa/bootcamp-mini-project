@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Gedung</h1>
+<form th:action="@{~/gedung/update}" method="post" th:object="${gedung}">
+  <input type="hidden" id="id" th:field="*{id}">
+
+  <label>Code</label><br>
+  <input type="text" name="code" id="code" th:value="${gedung.code}"><br>
+
+  <label>Name</label><br>
+  <input type="text" name="name" id="name" th:value="${gedung.name}"><br>
+
+  <label>Jumlah Lantai</label><br>
+  <input type="text" name="jmlLantai" id="jmlLantai" th:value="${gedung.jmlLantai}"><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

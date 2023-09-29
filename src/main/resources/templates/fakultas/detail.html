@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Detail Fakultas</h1>
+<form th:action="@{~/fakultas/save}" method="post">
+
+    <label>Code</label><br>
+    <input type="text" name="code" id="code" th:value="${fakultas.code}"> <br>
+
+    <label>Name</label><br>
+    <input type="text" name="name" id="name" th:value="${fakultas.name}"> <br>
+
+    <label>Alamat</label><br>
+    <input type="text" name="alamat" id="alamat" th:value="${fakultas.alamat}"> <br>
+
+</form>
+</body>
+</html>

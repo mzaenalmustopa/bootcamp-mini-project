@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Index Fakultas</h1>
+<a th:href="@{~/fakultas/add}"> Add New Fakultas</a>
+<table>
+    <thead>
+        <tr>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Alamat</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="fakultas :${fakultasList}">
+            <td th:text="${fakultas.code}"></td>
+            <td th:text="${fakultas.name}"></td>
+            <td th:text="${fakultas.alamat}"></td>
+            <td>
+                <a th:href="@{~/fakultas/edit/{id}(id=${fakultas.id})}">Edit</a>
+                <a th:href="@{~/fakultas/detail/{id}(id=${fakultas.id})}">Detail</a>
+                <a th:href="@{~/fakultas/delete/{id}(id=${fakultas.id})}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

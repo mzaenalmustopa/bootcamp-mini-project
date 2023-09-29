@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Index Dosen</h1>
+<a th:href="@{~/dosen/add}">Add New Dosen</a>
+<table>
+  <thead>
+  <tr>
+    <td>Nip</td>
+    <td>Name</td>
+    <td>Jenis Kelamin</td>
+    <td>Alamat</td>
+    <td>Gelar</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="dosen :${dosenList}">
+    <td th:text="${dosen.nip}"></td>
+    <td th:text="${dosen.name}"></td>
+    <td th:text="${dosen.jk}"></td>
+    <td th:text="${dosen.alamat}"></td>
+    <td th:text="${dosen.gelar}"></td>
+    <td>
+      <a th:href="@{~/dosen/edit/{id}(id=${dosen.id})}">Edit</a>
+      <a th:href="@{~/dosen/detail/{id}(id=${dosen.id})}">Detail</a>
+      <a th:href="@{~/dosen/delete/{id}(id=${dosen.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

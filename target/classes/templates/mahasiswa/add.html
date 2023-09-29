@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add New Mahasiswa</h1>
+<form th:action="@{~/mahasiswa/save}" method="post">
+
+  <label>Name</label><br>
+  <input type="text" name="name" id="name"><br>
+
+  <label>Jenis Kelamin</label><br>
+  <input type="text" name="jk" id="jk"><br>
+
+  <label>Alamat</label><br>
+  <input type="text" name="alamat" id="alamat"><br>
+
+  <label>Tempat Lahir</label><br>
+  <input type="text" name="tmpLahir" id="tmpLahir"><br>
+
+  <label>Tanggal Lahir</label><br>
+  <input type="text" name="tglLahir" id="tglLahir"> <br>
+
+  <label>Agama</label><br>
+  <input type="text" name="agama" id="agama"><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

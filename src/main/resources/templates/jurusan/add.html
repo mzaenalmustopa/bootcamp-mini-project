@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add New Jurusan</h1>
+<form th:action="@{~/jurusan/save}" method="post">
+
+  <label>Code</label><br>
+  <input type="text" name="code" id="code"><br>
+
+  <label>Name</label><br>
+  <input type="text" name="name" id="name"><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
