@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Edit Mahasiswa</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Edit Mahasiswa</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Edit Mahasiswa</h3>
+            </div>
+            <!-- /. carh header -->
+            <form th:action="@{~/mahasiswa/update}" method="post">
+                <!-- id di hidden -->
+                <input type="hidden" id="id" th:field="*{mahasiswa.id}">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" th:value="${mahasiswa.name}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jk">Jenis Kelamin</label>
+                        <input type="text" class="form-control" name="jk" id="jk" placeholder="Enter Jenis Kelamin" th:value="${mahasiswa.jk}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Enter Alamat" th:value="${mahasiswa.alamat}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tmpLahir">Tempat Lahir</label>
+                        <input type="text" class="form-control" name="tmpLahir" id="tmpLahir" placeholder="Enter Tempat Lahir" th:value="${mahasiswa.tmpLahir}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tglLahir">Tanggal Lahir</label>
+                        <input type="text" class="form-control" name="tglLahir" id="tglLahir" placeholder="Enter Tanggal Lahir" th:value="${mahasiswa.tglLahir}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <input type="text" class="form-control" name="agama" id="agama" placeholder="Enter Agama" th:value="${mahasiswa.agama}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jurusan</label>
+                        <select id="jurusanId" name="jurusanId" class="form-control">
+                            <option value="">Select One</option>
+                            <option th:each="jurusan :${jurusanList}" th:value="${jurusan.id}" th:text="${jurusan.name}"
+                                    th:selected="${jurusan.id == mahasiswa.jurusanId}">Select One
+
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

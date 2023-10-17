@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+  <div class="col-sm-6">
+    <h1 class="m-0">Mahasiswa</h1>
+  </div><!-- /.col -->
+  <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#">Home</a> </li>
+      <li class="breadcrumb-item active">Mahasiswa</li>
+    </ol>
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row" layout:fragment="content">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <!-- /. card mulai -->
+    <div class="card">
+      <!-- /. header -->
+      <div class="card-header bg-success">
+        <h3 class="card-title">Mahasiswa</h3>
+
+        <!-- header tools -->
+        <div class="card-tools">
+          <div class="input-group input-group-sm" style="width: 200px;">
+            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <i class="fas fa-search"></i>
+              </button>
+              <a th:href="@{~/mahasiswa/add}" id="btn-add" class="btn btn-info">
+                <i class="fas fa-plus"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- tools end -->
+      </div>
+      <!-- header end -->
+
+      <div class="card-body">
+        <table id="table-data" class="table">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Jenis Kelamin</td>
+              <td>Alamat</td>
+              <td>Tempat Lahir</td>
+              <td>Tanggal Lahir</td>
+              <td>Agama</td>
+              <td>Jurusan</td>
+            </tr>
+          </thead>
+            <tbody>
+              <tr th:each="mahasiswa : ${mahasiswaList}">
+                <td th:text="${mahasiswa.name}"></td>
+                <td th:text="${mahasiswa.jk}"></td>
+                <td th:text="${mahasiswa.alamat}"></td>
+                <td th:text="${mahasiswa.tmpLahir}"></td>
+                <td th:text="${mahasiswa.tglLahir}"></td>
+                <td th:text="${mahasiswa.agama}"></td>
+                <td th:text="${mahasiswa.jurusanName}"></td>
+                <td>
+                  <a th:href="@{~/mahasiswa/detail/{id}(id=${mahasiswa.id})}"
+                      class="btn btn-xs btn-info btn-detail">
+                        <i class="fas fa-eye"></i>
+                  </a>
+                  <a th:href="@{~/mahasiswa/edit/{id}(id=${mahasiswa.id})}"
+                      class="btn btn-xs btn-warning btn-edit">
+                        <i class="fas fa-edit"></i>
+                  </a>
+                  <form class="d-inline" th:action="@{~/mahasiswa/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${mahasiswa.id}">
+                    <button type="submit" class="btn btn-xs btn-danger">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
