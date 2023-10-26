@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 public class MahasiswaModel {
 
     private String id;
+    private String nim;
     private String name;
     private String jk;
     private String alamat;
@@ -24,6 +27,7 @@ public class MahasiswaModel {
     private String agama;
     private String jurusanId;
     private String jurusanName;
+    private List<KelasDetailModel> kelasDetail = new ArrayList<>();
 
     public MahasiswaModel(MahasiswaEntity entity) {
         BeanUtils.copyProperties(entity, this);

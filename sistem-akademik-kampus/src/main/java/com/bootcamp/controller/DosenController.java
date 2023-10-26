@@ -1,21 +1,27 @@
 package com.bootcamp.controller;
 
+import com.bootcamp.entity.LookUpEntity;
 import com.bootcamp.model.DosenModel;
 import com.bootcamp.service.DosenService;
+import com.bootcamp.service.LookupService;
+import com.bootcamp.util.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
 @RequestMapping("/dosen")
 public class DosenController {
 
-    private DosenService dosenService;
+    private final DosenService dosenService;
+    private final LookupService lookupService;
 
-    public DosenController(DosenService dosenService) {
+    public DosenController(DosenService dosenService, LookupService lookupService) {
         this.dosenService = dosenService;
+        this.lookupService = lookupService;
     }
 
     @GetMapping
@@ -29,12 +35,20 @@ public class DosenController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        return new ModelAndView("pages/dosen/add");
+        ModelAndView view = new ModelAndView("pages/dosen/add");
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
+        return view;
     }
 
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute DosenModel request){
+        ModelAndView view = new ModelAndView("pages/dosen/add");
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
+        view.addObject("dosen", request);
         this.dosenService.save(request);
+
         return new ModelAndView("redirect:/dosen");
     }
 
@@ -46,6 +60,8 @@ public class DosenController {
         }
 
         ModelAndView view = new ModelAndView("pages/dosen/edit");
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("dosen",model);
         return view;
     }

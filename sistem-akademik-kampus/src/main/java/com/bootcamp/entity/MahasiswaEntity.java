@@ -24,6 +24,9 @@ public class MahasiswaEntity {
     @Column(name = "id", length = 36)
     private String id;
 
+    @Column(name = "nim", length = 20, unique = true)
+    private String nim;
+
     @Column(name = "name", length = 200)
     private String name;
 
@@ -61,7 +64,7 @@ public class MahasiswaEntity {
     @Column(name = "update_by")
     private String updateBy;
 
-    @OneToMany(mappedBy = "mahasiswa", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "mahasiswa", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KelasDetailEntity> kelasDetail;
 
     public MahasiswaEntity(MahasiswaModel model) {

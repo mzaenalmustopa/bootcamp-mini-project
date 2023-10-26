@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -16,18 +15,20 @@ public class KelasDetailModel {
     private String kelasId;
     private String mahasiswaId;
     private String status;
-    private KelasModel kelas;
-    private MahasiswaModel mahasiswa;
+    private String kelasName;
+    private String mahasiswaName;
+
+
     public KelasDetailModel(KelasDetailEntity entity) {
         BeanUtils.copyProperties(entity, this);
         if (entity.getKelasId() != null){
             kelasId = entity.getKelas().getId();
-            kelas = new KelasModel(entity.getKelas());
+            kelasName = entity.getKelas().getCode();
         }
 
         if (entity.getMahasiswaId() != null){
             mahasiswaId = entity.getMahasiswa().getId();
-            mahasiswa = new MahasiswaModel(entity.getMahasiswa());
+            mahasiswaName = entity.getMahasiswa().getName();
         }
     }
 }

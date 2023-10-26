@@ -17,6 +17,7 @@ public class DbInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // panggil method init lookup
         initLookup();
     }
 
@@ -34,8 +35,13 @@ public class DbInit implements CommandLineRunner {
 
         if (lookupService.getByGroups("SEMESTER").isEmpty()){
             lookupService.saveAll(Arrays.asList(
-                    new LookUpEntity("SEMESTER","GANJIL","ganjil",1),
-                    new LookUpEntity("SEMESTER","GENAP","genap",2)
+                    new LookUpEntity("SEMESTER","1","1",1),
+                    new LookUpEntity("SEMESTER","2","2",2),
+                    new LookUpEntity("SEMESTER","3","3",3),
+                    new LookUpEntity("SEMESTER","4","4",4),
+                    new LookUpEntity("SEMESTER","5","5",5),
+                    new LookUpEntity("SEMESTER","6","6",6),
+                    new LookUpEntity("SEMESTER","7","7",7)
             ));
         }
 
@@ -43,6 +49,13 @@ public class DbInit implements CommandLineRunner {
             lookupService.saveAll(Arrays.asList(
                     new LookUpEntity("ONLINE","ONLINE","Online",1),
                     new LookUpEntity("ONLINE","OFFLINE","Offline",2)
+            ));
+        }
+
+        if (lookupService.getByGroups("BISAONLINE").isEmpty()){
+            lookupService.saveAll(Arrays.asList(
+                    new LookUpEntity("BISAONLINE","TRUE","True",1),
+                    new LookUpEntity("BISAONLINE","FALSE","False",2)
             ));
         }
 

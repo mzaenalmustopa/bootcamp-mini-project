@@ -1,18 +1,18 @@
 package com.bootcamp.controller;
 
+import com.bootcamp.entity.LookUpEntity;
 import com.bootcamp.model.DosenModel;
 import com.bootcamp.model.KelasModel;
 import com.bootcamp.model.MatakuliahModel;
 import com.bootcamp.model.RuangModel;
-import com.bootcamp.service.DosenService;
-import com.bootcamp.service.KelasService;
-import com.bootcamp.service.MatakuliahService;
-import com.bootcamp.service.RuangService;
+import com.bootcamp.service.*;
+import com.bootcamp.util.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -25,6 +25,7 @@ public class KelasController {
     private final RuangService ruangService;
     private final MatakuliahService matakuliahService;
     private final DosenService dosenService;
+    private final LookupService lookupService;
 
     @GetMapping
     public ModelAndView index(){
@@ -42,6 +43,11 @@ public class KelasController {
         List<DosenModel> dosen = dosenService.getAll();
         List<MatakuliahModel> matakuliah = matakuliahService.getAll();
 
+        view.addObject("hariList",lookupService.getByGroups("HARI"));
+        view.addObject("semseterList",lookupService.getByGroups("SEMESTER"));
+        view.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        view.addObject("onlineList",lookupService.getByGroups("BISAONLINE"));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("ruangList", ruang);
         view.addObject("dosenList", dosen);
         view.addObject("matakuliahList", matakuliah);

@@ -36,7 +36,7 @@ public class KelasServiceImpl implements KelasService {
     public List<KelasModel> getAll() {
         List<KelasEntity> result = kelasRepo.findAll();
         if(result.isEmpty()){
-            Collections.emptyList();
+           return Collections.emptyList();
         }
 
         return result.stream().map(KelasModel::new).collect(Collectors.toList());

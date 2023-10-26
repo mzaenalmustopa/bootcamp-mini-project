@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +20,7 @@ import java.util.UUID;
 public class KelasEntity {
 
     @Id
-    @Column(name = "id", length = 36)
+    @Column(name = "id", length = 36, unique = true)
     private String id;
 
     @Column(name = "code",length = 20, unique = true)
@@ -87,7 +85,7 @@ public class KelasEntity {
     @Column(name = "updateBy")
     private String updateBy;
 
-    @OneToMany(mappedBy = "kelas", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "kelas", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<KelasDetailEntity> kelasDetail;
 
     public KelasEntity(KelasModel model) {

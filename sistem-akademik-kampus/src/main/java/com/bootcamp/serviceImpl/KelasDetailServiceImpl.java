@@ -5,12 +5,15 @@ import com.bootcamp.entity.KelasEntity;
 import com.bootcamp.entity.MahasiswaEntity;
 import com.bootcamp.model.KelasDetailModel;
 import com.bootcamp.repository.KelasDetailRepo;
+import com.bootcamp.repository.KelasRepo;
+import com.bootcamp.repository.MahasiswaRepo;
 import com.bootcamp.service.KelasDetailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +25,8 @@ import java.util.stream.Collectors;
 public class KelasDetailServiceImpl implements KelasDetailService {
 
     private final KelasDetailRepo kelasDetailRepo;
+    private final KelasRepo kelasRepo;
+    private final MahasiswaRepo mahasiswaRepo;
 
     @Override
     public List<KelasDetailModel> getAll() {
@@ -29,7 +34,7 @@ public class KelasDetailServiceImpl implements KelasDetailService {
         if (result.isEmpty()){
             return Collections.emptyList();
         }
-        return this.kelasDetailRepo.findAll().stream().map(KelasDetailModel::new).collect(Collectors.toList());
+        return result.stream().map(KelasDetailModel::new).collect(Collectors.toList());
     }
 
     @Override
@@ -46,6 +51,16 @@ public class KelasDetailServiceImpl implements KelasDetailService {
             return Optional.empty();
         }
 
+        KelasEntity kelas = this.kelasRepo.findById(request.getKelasId()).orElse(null);
+        if (kelas == null){
+            return Optional.empty();
+        }
+
+        MahasiswaEntity mahasiswa = this.mahasiswaRepo.findById(request.getMahasiswaId()).orElse(null);
+        if (mahasiswa == null){
+            return Optional.empty();
+        }
+
         KelasDetailEntity result =  new KelasDetailEntity(request);
         try {
             this.kelasDetailRepo.save(result);
@@ -58,25 +73,27 @@ public class KelasDetailServiceImpl implements KelasDetailService {
     }
 
     @Override
-    public Optional<KelasDetailModel> update(KelasDetailModel request, String id) {
-       Optional <KelasDetailEntity> kelasDetail = this.kelasDetailRepo.findById(id);
-        if(kelasDetail.isEmpty()){
-            return Optional.empty();
-        }
+    public Optional<KelasDetailModel> update(String id, KelasDetailModel request) {
+       KelasDetailEntity entity = this.kelasDetailRepo.findById(id).orElse(null);
+       if (entity == null){
+           return Optional.empty();
+       }
 
-        KelasDetailEntity data = kelasDetail.get();
-        BeanUtils.copyProperties(request, data);
-        KelasEntity kelas = new KelasEntity(request.getKelas().getId());
-        data.setKelas(kelas);
-        MahasiswaEntity mahasiswa = new MahasiswaEntity(request.getMahasiswa().getId());
-        data.setMahasiswa(mahasiswa);
+
+        BeanUtils.copyProperties(request, entity);
+        KelasEntity kelas = new KelasEntity(request.getKelasId());
+        MahasiswaEntity mahasiswa = new MahasiswaEntity(request.getMahasiswaId());
+        entity.setId(id);
+        entity.setKelas(kelas);
+        entity.setMahasiswa(mahasiswa);
+        entity.setUpdateAt(LocalDateTime.now());
 
         try {
-            this.kelasDetailRepo.save(data);
+            this.kelasDetailRepo.save(entity);
             log.info("update kelasDetail Success");
-            return Optional.of(new KelasDetailModel(data));
+            return Optional.of(new KelasDetailModel(entity));
         }catch (Exception e){
-            log.error("update kelasDetail error:{}",e.getMessage());
+            log.error("update kelasDetail failed,  error:{}",e.getMessage());
             return Optional.empty();
         }
     }

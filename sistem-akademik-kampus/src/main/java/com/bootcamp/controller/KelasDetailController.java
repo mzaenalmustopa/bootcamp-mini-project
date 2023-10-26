@@ -67,12 +67,13 @@ public class KelasDetailController {
         ModelAndView view = new ModelAndView("pages/kelasdetail/edit");
         view.addObject("kelasList", kelas);
         view.addObject("mahasiswaList", mahasiswa);
+        view.addObject("kelasDetail", kelasDetail);
         return view;
     }
 
     @PostMapping("/update")
     public ModelAndView update(@ModelAttribute KelasDetailModel request){
-        this.kelasDetailService.update(request, request.getId());
+        this.kelasDetailService.update(request.getId(), request);
         return new ModelAndView("redirect:/kelasdetail");
     }
 
@@ -80,7 +81,7 @@ public class KelasDetailController {
     public ModelAndView detail(@PathVariable("id") String id){
         KelasDetailModel kelasDetail = this.kelasDetailService.getById(id);
         if (kelasDetail == null){
-            return new ModelAndView("redirect:/kelasDetail");
+            return new ModelAndView("redirect:/kelasdetail");
         }
 
         ModelAndView view = new ModelAndView("pages/kelasdetail/detail");

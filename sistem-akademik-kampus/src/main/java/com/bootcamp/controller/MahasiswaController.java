@@ -1,15 +1,19 @@
 package com.bootcamp.controller;
 
 
+import com.bootcamp.entity.LookUpEntity;
 import com.bootcamp.model.JurusanModel;
 import com.bootcamp.model.MahasiswaModel;
 import com.bootcamp.service.JurusanService;
+import com.bootcamp.service.LookupService;
 import com.bootcamp.service.MahasiswaService;
+import com.bootcamp.util.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -19,11 +23,13 @@ public class MahasiswaController {
 
     private final MahasiswaService mahasiswaService;
     private final JurusanService jurusanService;
+    private final LookupService lookupService;
 
     @GetMapping
     public ModelAndView index(){
         ModelAndView view = new ModelAndView("pages/mahasiswa/index");
         List<MahasiswaModel> data = mahasiswaService.getAll();
+
         view.addObject("mahasiswaList", data);
         return view;
     }
@@ -33,6 +39,9 @@ public class MahasiswaController {
         ModelAndView view = new ModelAndView("pages/mahasiswa/add");
         List<JurusanModel> jurusan = this.jurusanService.getAll();
 
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("agamaList", lookupService.getByGroups(Constants.AGAMA));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("jurusanList", jurusan);
         view.addObject("mahasiswa", new MahasiswaModel());
         return view;

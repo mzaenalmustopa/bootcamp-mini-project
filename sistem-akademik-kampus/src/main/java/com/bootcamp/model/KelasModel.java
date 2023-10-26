@@ -1,5 +1,6 @@
 package com.bootcamp.model;
 
+import com.bootcamp.entity.KelasDetailEntity;
 import com.bootcamp.entity.KelasEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +8,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -32,6 +35,7 @@ public class KelasModel {
     private String dosenName;
     private String matakuliahId;
     private String matakuliahName;
+    private List<KelasDetailModel> kelasDetail = new ArrayList<>();
 
     public KelasModel(KelasEntity entity) {
         BeanUtils.copyProperties(entity, this);
