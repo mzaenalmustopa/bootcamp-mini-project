@@ -42,22 +42,17 @@
 
           <div class="form-group">
             <label for="jk">Jenis Kelamin</label>
-            <input type="text" class="form-control" name="jk" id="jk" placeholder="Enter Jenis Kelamin">
-          </div>
-
-          <div class="form-group">
-            <label for="alamat">Alamat</label>
-            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Enter Alamat">
-          </div>
-
-          <div class="form-group">
-            <label for="jk">Jenis Kelamin</label>
-            <select name="jk" class="form-control">
+            <select id="jk" name="jk" class="form-control">
               <option value="">Select One</option>
               <option th:each="mahasiswa :${#lists.sort(genderList, byPosition)}" th:value="${mahasiswa.name}"
                       th:text="${mahasiswa.name}"
               ></option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="alamat">Alamat</label>
+            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Enter Alamat">
           </div>
 
           <div class="form-group">

@@ -49,6 +49,10 @@ public class MahasiswaController {
 
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute MahasiswaModel request){
+        ModelAndView view = new ModelAndView("pages/mahasiswa/add");
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("agamaList", lookupService.getByGroups(Constants.AGAMA));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         this.mahasiswaService.save(request);
         return new ModelAndView("redirect:/mahasiswa");
     }
@@ -62,6 +66,10 @@ public class MahasiswaController {
         List<JurusanModel> jurusan = this.jurusanService.getAll();
 
         ModelAndView view = new ModelAndView("pages/mahasiswa/edit");
+
+        view.addObject("genderList", lookupService.getByGroups(Constants.GENDER));
+        view.addObject("agamaList", lookupService.getByGroups(Constants.AGAMA));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("jurusanList", jurusan);
         view.addObject("mahasiswa", model);
         return view;

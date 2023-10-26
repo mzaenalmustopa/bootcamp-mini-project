@@ -48,7 +48,6 @@ public class DosenController {
         view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("dosen", request);
         this.dosenService.save(request);
-
         return new ModelAndView("redirect:/dosen");
     }
 

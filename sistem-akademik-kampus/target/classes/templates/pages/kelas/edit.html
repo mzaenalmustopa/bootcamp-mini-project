@@ -35,10 +35,17 @@
             <label for="code">Code Kelas</label>
             <input type="text" class="form-control" name="code" id="code" placeholder="Enter Code Kelas" th:value="${kelas.code}">
           </div>
+
           <div class="form-group">
-            <label for="namaHari">Name Hari</label>
-            <input type="text" class="form-control" name="namaHari" id="namaHari" placeholder="Enter Nama Hari" th:value="${kelas.namaHari}">
+            <label for="namaHari"> Nama Hari</label>
+            <select id="namaHari" name="namaHari" class="form-control">
+              <option value="">Select One</option>
+              <option th:each="kelas :${#lists.sort(hariList, byPosition)}" th:value="${kelas.name}"
+                      th:text="${kelas.name}"
+              ></option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="jamMulai">Jam Mulai</label>
             <input type="time" class="form-control" name="jamMulai" id="jamMulai" placeholder="Enter Jam Mulai" th:value="${kelas.jamMulai}">
@@ -81,12 +88,22 @@
 
           <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" class="form-control" name="status" id="status" placeholder="Enter Status" th:value="${kelas.status}">
+            <select id="status" name="status" class="form-control">
+              <option value="">Select One</option>
+              <option th:each="kelas :${#lists.sort(statusList, byPosition)}" th:value="${kelas.name}"
+                      th:text="${kelas.name}"
+              ></option>
+            </select>
           </div>
 
           <div class="form-group">
             <label for="semester">Semester</label>
-            <input type="text" class="form-control" name="semester" id="semester" placeholder="Enter Semester" th:value="${kelas.semester}">
+            <select id="semester" name="semester" class="form-control">
+              <option value="">Select One</option>
+              <option th:each="kelas :${#lists.sort(semseterList, byPosition)}" th:value="${kelas.name}"
+                      th:text="${kelas.name}"
+              ></option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -101,7 +118,12 @@
 
           <div class="form-group">
             <label for="bisaOnline">Bisa Online</label>
-            <input type="text" class="form-control" name="bisaOnline" id="bisaOnline" placeholder="Enter Bisa Online" th:value="${kelas.bisaOnline}">
+            <select id="bisaOnline" name="bisaOnline" class="form-control">
+              <option value="">Select One</option>
+              <option th:each="kelas :${#lists.sort(onlineList, byPosition)}" th:value="${kelas.name}"
+                      th:text="${kelas.name}"
+              ></option>
+            </select>
           </div>
 
         </div>

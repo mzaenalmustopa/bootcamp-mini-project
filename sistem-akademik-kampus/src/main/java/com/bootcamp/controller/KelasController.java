@@ -6,7 +6,6 @@ import com.bootcamp.model.KelasModel;
 import com.bootcamp.model.MatakuliahModel;
 import com.bootcamp.model.RuangModel;
 import com.bootcamp.service.*;
-import com.bootcamp.util.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,33 +37,32 @@ public class KelasController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("pages/kelas/add");
+        ModelAndView andView = new ModelAndView("pages/kelas/add");
         List<RuangModel> ruang = ruangService.getAll();
         List<DosenModel> dosen = dosenService.getAll();
         List<MatakuliahModel> matakuliah = matakuliahService.getAll();
+
+        andView.addObject("hariList",lookupService.getByGroups("HARI"));
+        andView.addObject("semseterList",lookupService.getByGroups("SEMESTER"));
+        andView.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        andView.addObject("onlineList",lookupService.getByGroups("BISAONLINE"));
+        andView.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
+        andView.addObject("ruangList", ruang);
+        andView.addObject("dosenList", dosen);
+        andView.addObject("matakuliahList", matakuliah);
+        andView.addObject("kelasList", new KelasModel());
+        return andView;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save(@ModelAttribute KelasModel request){
+        ModelAndView view = new ModelAndView("pages/kelas/add");
 
         view.addObject("hariList",lookupService.getByGroups("HARI"));
         view.addObject("semseterList",lookupService.getByGroups("SEMESTER"));
         view.addObject("statusList",lookupService.getByGroups("ONLINE"));
         view.addObject("onlineList",lookupService.getByGroups("BISAONLINE"));
         view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
-        view.addObject("ruangList", ruang);
-        view.addObject("dosenList", dosen);
-        view.addObject("matakuliahList", matakuliah);
-        view.addObject("kelasList", new KelasModel());
-        return view;
-    }
-
-    @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute KelasModel request){
-        ModelAndView view = new ModelAndView("pages/kelas/add");
-        List<RuangModel> data1 = ruangService.getAll();
-        List<DosenModel> data2 = dosenService.getAll();
-        List<MatakuliahModel> data3 = matakuliahService.getAll();
-
-        view.addObject("ruangList", data1);
-        view.addObject("dosenList", data2);
-        view.addObject("matakuliahList", data3);
         this.kelasService.save(request);
         return new ModelAndView("redirect:/kelas");
     }
@@ -81,6 +79,11 @@ public class KelasController {
         List<MatakuliahModel> matkul = this.matakuliahService.getAll();
 
         ModelAndView view = new ModelAndView("pages/kelas/edit");
+        view.addObject("hariList",lookupService.getByGroups("HARI"));
+        view.addObject("semseterList",lookupService.getByGroups("SEMESTER"));
+        view.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        view.addObject("onlineList",lookupService.getByGroups("BISAONLINE"));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("kelas", model);
         view.addObject("ruangList", ruang);
         view.addObject("dosenList", dosen);
