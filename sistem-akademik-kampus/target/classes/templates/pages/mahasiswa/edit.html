@@ -45,9 +45,7 @@
                         <label for="jk">Jenis Kelamin</label>
                         <select id="jk" name="jk" class="form-control">
                             <option value="">Select One</option>
-                            <option th:each="mahasiswa :${#lists.sort(genderList, byPosition)}" th:value="${mahasiswa.jk}"
-                                    th:text="${mahasiswa.jk}"
-                            ></option>
+                            <option th:each="mahasiswa :${#lists.sort(genderList, byPosition)}" th:value="${mahasiswa.name}" th:text="${mahasiswa.name}"></option>
                         </select>
                     </div>
 

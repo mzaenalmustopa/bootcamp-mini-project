@@ -30,8 +30,8 @@
                 <!-- form start -->
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Kelas</label>
-                        <select name="kelas.id" class="form-control">
+                        <label for="kelasId">Kelas</label>
+                        <select id="kelasId" name="kelasId" class="form-control">
                             <option value="">Select One</option>
                             <option th:each="kelas :${kelasList}" th:text="${kelas.code}" th:value="${kelas.id}">
                                 Select One
@@ -40,8 +40,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Mahasiswa</label>
-                        <select name="mahasiswa.id" class="form-control">
+                        <label for="mahasiswaId">Mahasiswa</label>
+                        <select id="mahasiswaId" name="mahasiswaId" class="form-control">
                             <option value="">Select One</option>
                             <option th:each="mahasiswa :${mahasiswaList}" th:text="${mahasiswa.name}" th:value="${mahasiswa.id}">
                                 Select One
@@ -51,9 +51,12 @@
 
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <input type="text" class="form-control" name="status" id="status" placeholder="Enter Status">
+                        <select id="status" name="status" class="form-control">
+                            <option value="">Select One</option>
+                            <option th:each="kelasdetail :${#lists.sort(statusList, byPosition)}" th:value="${kelasdetail.name}"
+                                    th:text="${kelasdetail.name}"></option>
+                        </select>
                     </div>
-
                 </div>
                 <!-- card body -->
                 <div class="card-footer">

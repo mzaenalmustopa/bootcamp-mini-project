@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +21,7 @@ import java.util.UUID;
 public class KelasEntity {
 
     @Id
-    @Column(name = "id", length = 36, unique = true)
+    @Column(name = "id", length = 36)
     private String id;
 
     @Column(name = "code",length = 20, unique = true)
@@ -62,7 +63,7 @@ public class KelasEntity {
     private String status;
 
     @Column(name = "semester")
-    private String semester;
+    private Integer semester;
 
     @Column(name = "tahunAjaran")
     private Integer tahunAjaran;
@@ -86,7 +87,7 @@ public class KelasEntity {
     private String updateBy;
 
     @OneToMany(mappedBy = "kelas", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<KelasDetailEntity> kelasDetail;
+    private List<KelasDetailEntity> kelasDetail = new ArrayList<>();
 
     public KelasEntity(KelasModel model) {
         BeanUtils.copyProperties(model, this);

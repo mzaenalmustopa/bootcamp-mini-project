@@ -1,16 +1,19 @@
 package com.bootcamp.controller;
 
+import com.bootcamp.entity.LookUpEntity;
 import com.bootcamp.model.KelasDetailModel;
 import com.bootcamp.model.KelasModel;
 import com.bootcamp.model.MahasiswaModel;
 import com.bootcamp.service.KelasDetailService;
 import com.bootcamp.service.KelasService;
+import com.bootcamp.service.LookupService;
 import com.bootcamp.service.MahasiswaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -20,6 +23,7 @@ public class KelasDetailController {
     private final KelasDetailService kelasDetailService;
     private final KelasService kelasService;
     private final MahasiswaService mahasiswaService;
+    private final LookupService lookupService;
 
     @GetMapping
     public ModelAndView index(){
@@ -36,6 +40,8 @@ public class KelasDetailController {
         List<KelasModel> kelas = this.kelasService.getAll();
         List<MahasiswaModel> mahasiswa = this.mahasiswaService.getAll();
 
+        view.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("kelasList", kelas);
         view.addObject("mahasiswaList", mahasiswa);
         view.addObject("kelasDetailList", new KelasDetailModel());
@@ -45,9 +51,19 @@ public class KelasDetailController {
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute KelasDetailModel request){
         ModelAndView view = new ModelAndView("pages/kelasdetail/add");
+        if (request == null){
+            return new ModelAndView("redirect:/kelasdetail");
+        }
+
+        if (request.getStatus().isEmpty()){
+            return new ModelAndView("redirect:/kelasdetail");
+        }
+
         List<KelasModel> kelas = this.kelasService.getAll();
         List<MahasiswaModel> mahasiswa = this.mahasiswaService.getAll();
 
+        view.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("kelasList", kelas);
         view.addObject("mahasiswaList", mahasiswa);
         this.kelasDetailService.save(request);
@@ -65,6 +81,8 @@ public class KelasDetailController {
         List<MahasiswaModel> mahasiswa = this.mahasiswaService.getAll();
 
         ModelAndView view = new ModelAndView("pages/kelasdetail/edit");
+        view.addObject("statusList",lookupService.getByGroups("ONLINE"));
+        view.addObject("byPosition", Comparator.comparing(LookUpEntity::getPosition));
         view.addObject("kelasList", kelas);
         view.addObject("mahasiswaList", mahasiswa);
         view.addObject("kelasDetail", kelasDetail);
@@ -73,7 +91,7 @@ public class KelasDetailController {
 
     @PostMapping("/update")
     public ModelAndView update(@ModelAttribute KelasDetailModel request){
-        this.kelasDetailService.update(request.getId(), request);
+        kelasDetailService.update(request.getId(), request);
         return new ModelAndView("redirect:/kelasdetail");
     }
 
@@ -96,7 +114,7 @@ public class KelasDetailController {
                 return new ModelAndView("redirect:/kelasdetail");
             }
 
-            this.kelasDetailService.delete(request.getId());
+            kelasDetailService.delete(request.getId());
             return new ModelAndView("redirect:/kelasdetail");
     }
 }

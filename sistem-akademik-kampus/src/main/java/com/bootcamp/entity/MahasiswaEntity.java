@@ -65,7 +65,7 @@ public class MahasiswaEntity {
     private String updateBy;
 
     @OneToMany(mappedBy = "mahasiswa", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<KelasDetailEntity> kelasDetail;
+    private List<KelasDetailEntity> kelasDetail = new ArrayList<>();
 
     public MahasiswaEntity(MahasiswaModel model) {
         BeanUtils.copyProperties(model, this);

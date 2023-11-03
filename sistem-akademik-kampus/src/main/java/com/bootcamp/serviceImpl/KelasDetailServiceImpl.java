@@ -47,6 +47,7 @@ public class KelasDetailServiceImpl implements KelasDetailService {
 
     @Override
     public Optional<KelasDetailModel> save(KelasDetailModel request) {
+
         if (request == null){
             return Optional.empty();
         }
@@ -63,7 +64,7 @@ public class KelasDetailServiceImpl implements KelasDetailService {
 
         KelasDetailEntity result =  new KelasDetailEntity(request);
         try {
-            this.kelasDetailRepo.save(result);
+            kelasDetailRepo.save(result);
             log.info("Save kelas detail success");
             return Optional.of(new KelasDetailModel(result));
         }catch (Exception e){
@@ -81,8 +82,15 @@ public class KelasDetailServiceImpl implements KelasDetailService {
 
 
         BeanUtils.copyProperties(request, entity);
-        KelasEntity kelas = new KelasEntity(request.getKelasId());
-        MahasiswaEntity mahasiswa = new MahasiswaEntity(request.getMahasiswaId());
+        KelasEntity kelas = kelasRepo.findById(request.getKelasId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
+        MahasiswaEntity mahasiswa = mahasiswaRepo.findById(request.getMahasiswaId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
+
         entity.setId(id);
         entity.setKelas(kelas);
         entity.setMahasiswa(mahasiswa);
@@ -100,17 +108,17 @@ public class KelasDetailServiceImpl implements KelasDetailService {
 
     @Override
     public Optional<KelasDetailModel> delete(String id) {
-        Optional<KelasDetailEntity> result = this.kelasDetailRepo.findById(id);
-        if (result.isEmpty()){
+        KelasDetailEntity result = this.kelasDetailRepo.findById(id).orElse(new KelasDetailEntity());
+        if (result == null){
+            log.warn("KelasDetail with id{}, not found", id);
             return Optional.empty();
         }
 
         try {
-            KelasDetailEntity data = result.get();
-            this.kelasDetailRepo.delete(data);
+            this.kelasDetailRepo.delete(result);
             log.info("delete kelasDetail Success");
-            return Optional.of(new KelasDetailModel(data));
-        }catch (Exception e){
+            return Optional.of(new KelasDetailModel(result));
+        } catch (Exception e){
             log.error("delete kelasDetail failed, error:{}",e.getMessage());
             return Optional.empty();
         }

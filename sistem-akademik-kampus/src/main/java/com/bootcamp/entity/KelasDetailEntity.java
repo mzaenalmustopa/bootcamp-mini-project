@@ -18,7 +18,7 @@ import java.util.UUID;
 public class KelasDetailEntity {
 
     @Id
-    @Column(name = "id", length = 36, unique = true)
+    @Column(name = "id", length = 36)
     private String id;
 
     @Column(name = "kelas_id", length = 36)

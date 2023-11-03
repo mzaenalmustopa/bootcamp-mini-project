@@ -73,7 +73,10 @@ public class MahasiswaServiceImpl implements MahasiswaService {
             return Optional.empty();
         }
 
-        JurusanEntity jurusan = new JurusanEntity(request.getJurusanId());
+        JurusanEntity jurusan = jurusanRepo.findById(request.getJurusanId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
 
         MahasiswaEntity data = entity.get();
         BeanUtils.copyProperties(request, data);

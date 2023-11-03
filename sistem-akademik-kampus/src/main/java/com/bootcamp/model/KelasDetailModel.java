@@ -12,21 +12,21 @@ import org.springframework.beans.BeanUtils;
 @NoArgsConstructor
 public class KelasDetailModel {
     private String id;
-    private String kelasId;
-    private String mahasiswaId;
     private String status;
+    private String kelasId;
     private String kelasName;
+    private String mahasiswaId;
     private String mahasiswaName;
 
 
     public KelasDetailModel(KelasDetailEntity entity) {
         BeanUtils.copyProperties(entity, this);
-        if (entity.getKelasId() != null){
+        if (entity.getKelas() != null){
             kelasId = entity.getKelas().getId();
             kelasName = entity.getKelas().getCode();
         }
 
-        if (entity.getMahasiswaId() != null){
+        if (entity.getMahasiswa() != null){
             mahasiswaId = entity.getMahasiswa().getId();
             mahasiswaName = entity.getMahasiswa().getName();
         }

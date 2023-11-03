@@ -25,7 +25,7 @@ public class KelasModel {
     @DateTimeFormat(pattern = "HH:mm")
     private Date jamSelesai;
     private String status;
-    private String semester;
+    private Integer semester;
     private Integer tahunAjaran;
     private Integer kuota;
     private Boolean bisaOnline;

@@ -92,9 +92,20 @@ public class KelasServiceImpl implements KelasService {
         }
 
         BeanUtils.copyProperties(request, entity);
-        RuangEntity ruang = new RuangEntity(request.getRuangId());
-        DosenEntity dosen = new DosenEntity(request.getDosenId());
-        MatakuliahEntity matakuliah = new MatakuliahEntity(request.getMatakuliahId());
+        RuangEntity ruang = ruangRepo.findById(request.getRuangId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
+
+        DosenEntity dosen = dosenRepo.findById(request.getDosenId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
+
+        MatakuliahEntity matakuliah = matakuliahRepo.findById(request.getMatakuliahId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
         entity.setId(id);
         entity.setRuang(ruang);
         entity.setDosen(dosen);

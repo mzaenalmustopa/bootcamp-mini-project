@@ -68,7 +68,10 @@ public class RuangServiceImpl implements RuangService {
         RuangEntity data = entity.get();
         data.setCode(request.getCode());
         data.setName(request.getName());
-        GedungEntity gedung = new GedungEntity(request.getGedungId());
+        GedungEntity gedung = gedungRepo.findById(request.getGedungId()).orElse(null);
+        if (request == null){
+            return Optional.empty();
+        }
         data.setGedung(gedung);
         try {
             this.ruangRepo.save(data);

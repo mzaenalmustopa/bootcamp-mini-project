@@ -33,9 +33,9 @@
         <div class="card-body">
           <div class="form-group">
             <label for="kelasId">Kelas</label>
-            <select id="kelasId" name="kelas.id" class="form-control">
+            <select id="kelasId" name="kelasId" class="form-control">
               <option value="">Select One</option>
-              <option th:each="kelas :${kelasList}" th:text="${kelas.code}" th:value="${kelas.id}">
+              <option th:each="kelas :${kelasList}" th:text="${kelas.code}" th:value="${kelas.code}">
                 Select One
               </option>
             </select>
@@ -43,9 +43,9 @@
 
           <div class="form-group">
             <label for="mahasiswaId">Mahasiswa</label>
-            <select id="mahasiswaId" name="mahasiswa.id" class="form-control">
+            <select id="mahasiswaId" name="mahasiswaId" class="form-control">
               <option value="">Select One</option>
-              <option th:each="mahasiswa :${mahasiswaList}" th:text="${mahasiswa.name}" th:value="${mahasiswa.id}">
+              <option th:each="mahasiswa :${mahasiswaList}" th:text="${mahasiswa.name}" th:value="${mahasiswa.name}">
                 Select One
               </option>
             </select>
@@ -53,7 +53,12 @@
 
           <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" class="form-control" name="status" id="status" placeholder="Enter Status" th:value="${kelasDetail.status}">
+            <select id="status" name="status" class="form-control">
+              <option value="">Select One</option>
+              <option th:each="kelasdetail :${#lists.sort(statusList, byPosition)}" th:value="${kelasdetail.name}"
+                      th:text="${kelasdetail.name}"
+              ></option>
+            </select>
           </div>
 
         </div>
