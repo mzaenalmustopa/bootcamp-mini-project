@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Edit Category</h1>
+<form th:action="@{~/category/update}" method="post">
+    <input type="hidden" name="id" th:value="${data.id}">
+
+    <label>Name</label><br>
+    <input type="text" name="name" th:value="${data.name}"> <br>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

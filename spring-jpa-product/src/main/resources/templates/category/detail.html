@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Detail Category</h1>
+<form th:action="@{~/category/save}" method="post">
+
+  <label>Name</label><br>
+  <input type="text" name="name" th:value="${data.name}"> <br>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer - Add</title>
+</head>
+<body>
+<!-- wajib ada-->
+<div class="container-fluid" layout:fragment="content">
+  <!-- Small boxes (Stat box) wajib ada-->
+  <div class="row">
+    <!-- wajib ada -->
+    <div class="col-12">
+      <!-- widged -->
+      <div class="card card-success">
+        <div class="card-header">
+          <h3 class="card-title">Edit Customer Data</h3>
+        </div>
+        <form th:action="@{~/customer/update}" method="post" class="form-horizontal">
+          <input th:value="${data.id}" type="hidden" name="id">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="accountNo" class="col-sm-2 col-form-label">Account No</label>
+              <div class="col-sm-10">
+                <input th:value="${data.accountNo}" type="text" class="form-control" name="accountNo" id="accountNo" placeholder="accountNo">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="name" class="col-sm-2 col-form-label">Customer Name</label>
+              <div class="col-sm-10">
+                <input th:value="${data.name}" type="text" class="form-control" name="name" id="name" placeholder="Name">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-2 col-form-label">Customer Email</label>
+              <div class="col-sm-10">
+                <input th:value="${data.email}" type="email" class="form-control" name="email" id="email" placeholder="Email">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phoneNumber" class="col-sm-2 col-form-label">phoneNumber</label>
+              <div class="col-sm-10">
+                <input th:value="${data.phoneNumber}" type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phoneNumber" class="col-sm-2 col-form-label">Address</label>
+              <div class="col-sm-10">
+                <a th:href="@{~/customer/address/new/{id}(id=${data.id}) } " class="btn btn-outline-info" id="btn-address-new">
+                  <i class="fas fa-address-card"></i>
+                  Add Address
+                </a>
+
+              </div>
+            </div>
+
+            <!-- address card -->
+            <div class="card card-success p-0">
+              <div class="card-header">
+                <h3 class="card-title">Address :</h3>
+
+                <div class="card-tools">
+                  <a th:href="@{~/customer/add-address}" class="btn btn-info
+                   btn-sm" id="btn-add-address">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- address body-->
+              <div class="card-body" id="card-body-address">
+                <div class="row row-address" th:each="addressItem, iter : ${data.address}">
+                  <div class="col-6">
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Address Name</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.addressName}" type="text" class="form-control" th:name="|address[${iter.index}].addressName|" placeholder="Address Name">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Country</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.countryName}" type="text" class="form-control" placeholder="Country">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Province</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.provinceName}" type="text" class="form-control" placeholder="Province">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">District</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.districtName}" type="text" class="form-control" placeholder="District">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Sub District</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.subDistrictName}" type="text" class="form-control" placeholder="Sub District">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-sm-2 col-form-label">Address</label>
+                      <div class="col-sm-10">
+                        <input th:value="${addressItem.address}" type="text" class="form-control" placeholder="Adress">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /address body -->
+            </div>
+            <!-- /address card -->
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-outline-info">Update</button>
+            <a th:href="@{~/customer}" class="btn btn-default">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- client script -->
+<th:block layout:fragment="script">
+  <script>
+    $('#btn-test').click(function (e){
+      e.preventDefault();
+
+      alert('Test Button click');
+    });
+    // new address
+    $('#btn-address-new').click(function (e){
+      e.preventDefault();
+
+      getModal($(this));
+    });
+
+    // load modal
+    function getModal(element){
+      // get url
+      var url = $(element).attr('href');
+      // ajax
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'HTML',
+        success: function (result){
+          // replace modal-content
+          $('.modal-content').html(result);
+          // menampilkan modal
+          $('#modal-form').modal('show');
+        }
+      });
+    }
+
+    // set modal
+    $('#modal-form').on('change','#countryId', function (){
+      var countryId = $(this).val();
+      var url = '/api/v1/country/province/'+ countryId;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (result){
+          $('#modal-form').find('#provinceId').empty();
+          $('#modal-form').find('#provinceId').append('<option value="">Select Province</option>');
+
+          $('#modal-form').find('#districtId').empty();
+          $('#modal-form').find('#districtId').append('<option value="">Select District</option>');
+
+          $('#modal-form').find('#subDistrictId').empty();
+          $('#modal-form').find('#subDistrictId').append('<option value="">Select Sub District</option>');
+          $.each(result, function (key, value){
+            $('#modal-form').find('#provinceId').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+          });
+        }
+      });
+    });
+
+    $('#modal-form').on('change','#provinceId', function (){
+      var provinceId = $(this).val();
+      var url = '/api/v1/country/district/'+ provinceId;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (result){
+          $('#modal-form').find('#districtId').empty();
+          $('#modal-form').find('#districtId').append('<option value="">Select District</option>');
+
+          $('#modal-form').find('#subDistrictId').empty();
+          $('#modal-form').find('#subDistrictId').append('<option value="">Select Sub District</option>');
+          $.each(result, function (key, value){
+            $('#modal-form').find('#districtId').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+          });
+        }
+      });
+    });
+
+
+    $('#modal-form').on('change','#districtId', function (){
+      var districtId = $(this).val();
+      var url = '/api/v1/country/sub-district/'+ districtId;
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'JSON',
+        success: function (result){
+          $('#modal-form').find('#subDistrictId').empty();
+          $('#modal-form').find('#subDistrictId').append('<option value="">Select Sub District</option>');
+          $.each(result, function (key, value){
+            $('#modal-form').find('#subDistrictId').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+          });
+        }
+      });
+    })
+
+
+  </script>
+</th:block>
+</body>
+</html>

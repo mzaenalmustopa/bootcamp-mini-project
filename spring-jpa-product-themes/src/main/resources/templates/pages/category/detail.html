@@ -1,0 +1,19 @@
+<!-- widged -->
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Detail Customer</h3>
+    </div>
+    <form class="form-horizontal">
+        <div class="card-body">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Category Name</label>
+                <div class="col-sm-10">
+                    <input th:value="${data.name}" type="text" class="form-control" name="name" id="name" placeholder="Category Name" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>

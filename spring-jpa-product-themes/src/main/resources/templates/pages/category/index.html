@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Index</title>
+</head>
+<body>
+<!-- wajib ada-->
+<div class="container-fluid" layout:fragment="content">
+    <!-- Small boxes (Stat box) wajib ada-->
+    <div class="row">
+        <!-- wajib ada -->
+        <div class="col-12">
+            <!-- widged -->
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Category Data</h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 300px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+
+                                <a th:href="@{/category/add}" class="btn btn-success" id="btn-add">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="data :${dataList}">
+                            <td th:text="${data.id}"></td>
+                            <td th:text="${data.name}"></td>
+                            <td>
+                                <a th:href="@{~/category/edit/{id}(id=${data.id}) }" class="btn btn-xs btn-warning btn-edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a th:href="@{/templates/pages/category/detail/{id}(id=${data.id}) }" class="btn btn-xs btn-info btn-view">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a th:href="@{/templates/pages/category/delete/{id}(id=${data.id}) }" class="btn btn-xs btn-danger btn-delete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- client script -->
+<th:block layout:fragment="script">
+    <script>
+        $(function(){
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+
+        $("#btn-add").click(function (e){
+            // mencegah link bekerja
+            e.preventDefault();
+            // call get modal
+            getModal($(this));
+        });
+
+        $(".btn-edit").on("click", function (event){
+            // mencegah link bekerja
+            event.preventDefault();
+
+            // call method getModel
+            //getModal($('.btn-edit'));
+            getModal($(this));
+        });
+
+        $(".btn-view").on("click", function (event){
+            // mencegah link bekerja
+            event.preventDefault();
+
+            // call method getModel
+            // getModal($('.btn-view'));
+            getModal($(this));
+        });
+
+        $(".btn-delete").on("click", function (event){
+            // mencegah link bekerja
+            event.preventDefault();
+
+            // call method getModel
+            //getModal($('.btn-delete'));
+            getModal($(this));
+        });
+
+        function getModal(element){
+            // get url
+            var url = $(element).attr('href');
+            // ajax
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'HTML',
+                success: function (result){
+                    // replace modal-content
+                    $('.modal-content').html(result);
+                    // menampilkan modal
+                    $('#modal-form').modal('show');
+                }
+            });
+        }
+    </script>
+</th:block>
+</body>
+</html>

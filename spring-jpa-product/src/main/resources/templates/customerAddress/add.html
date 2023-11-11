@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add New Customer Address</h1>
+<form th:action="@{~/customer_address/save}" method="post">
+
+    <label>Customer</label><br>
+    <input type="text" name="customer"><br>
+
+    <label>Address</label><br>
+    <input type="text" name="address"> <br>
+
+    <label>District</label><br>
+    <input type="text" name="district"> <br>
+
+    <label>City</label> <br>
+    <input type="text" name="city"><br>
+
+    <label>Province</label><br>
+    <input type="text" name="province"><br>
+
+    <label>Country</label><br>
+    <input type="text" name="country"><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>

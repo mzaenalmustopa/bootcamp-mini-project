@@ -1,0 +1,19 @@
+<div class="card card-info">
+  <div class="card-header">
+    <h3 class="card-title">New Category</h3>
+  </div>
+  <form th:action="@{~/category/save}" method="post" class="form-horizontal">
+    <div class="card-body">
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Category Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Category Name">
+        </div>
+      </div>
+    </div>
+    <div class="card-footer justify-content-between">
+      <button type="submit" class="btn btn-info">Save</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </form>
+</div>

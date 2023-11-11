@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Index Customer Address</h1>
+<a th:href="@{~/customer_address/add}">Add New CustomerAddress</a>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>City</th>
+            <th>Province</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="data : ${dataList}">
+            <td th:text="${data.id}"></td>
+            <td th:text="${data.customer}"></td>
+            <td th:text="${data.address}"></td>
+            <td th:text="${data.district}"></td>
+            <td th:text="${data.city}"></td>
+            <td th:text="${data.province}"></td>
+            <td th:text="${data.country}"></td>
+            <td>
+                <a th:href="@{/customerAddress/edit/{id}(id=${data.id})}">Edit</a>
+                <a th:href="@{/customerAddress/detail/{id}(id=${data.id})}">Detail</a>
+                <a th:href="@{/customerAddress/delete/{id}(id=${data.id})}">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

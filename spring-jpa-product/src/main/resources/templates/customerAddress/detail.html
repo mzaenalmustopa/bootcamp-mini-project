@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Customer Address</h1>
+<form th:action="@{~/customer_address/save}" method="post">
+
+    <label>Customer</label><br>
+    <input type="text" name="customer" th:value="${data.customer}"><br>
+
+    <label>Address</label><br>
+    <input type="text" name="address" th:value="${data.address}"> <br>
+
+    <label>District</label><br>
+    <input type="text" name="district" th:value="${data.district}"> <br>
+
+    <label>City</label> <br>
+    <input type="text" name="city" th:value="${data.city}"><br>
+
+    <label>Province</label><br>
+    <input type="text" name="province" th:value="${data.province}"><br>
+
+    <label>Country</label><br>
+    <input type="text" name="country" th:value="${data.country}"><br>
+
+</form>
+
+</body>
+</html>

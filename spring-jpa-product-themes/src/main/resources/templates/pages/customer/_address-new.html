@@ -1,0 +1,61 @@
+<div class="card card-info">
+  <div class="card-header">
+    <h3 class="card-title">New Category</h3>
+  </div>
+  <form th:action="@{~/customer/address/save}" method="post" class="form-horizontal">
+    <!-- customer id -->
+    <input type="hidden" name="customerId" th:value="${customerId}">
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="addressName">Address Name</label>
+            <input type="text" class="form-control" th:name="addressName" id="addressName" placeholder="Address Name">
+          </div>
+
+          <div class="form-group">
+            <label for="countryId">Country</label>
+            <select class="form-control" th:name="countryId" id="countryId" placeholder="Country">
+              <option value="">Select Country</option>
+              <option th:each="data : ${country}" th:value="${data.id}" th:text="${data.name}"></option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="provinceId">Province</label>
+            <select class="form-control" th:name="provinceId" id="provinceId" placeholder="Country">
+              <option value="">Select Province</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group row">
+            <label for="districtId">District</label>
+            <select class="form-control" th:name="districtId" id="districtId" placeholder="District">
+              <option value="">Select District</option>
+            </select>
+          </div>
+
+          <div class="form-group row">
+            <label for="subDistrictId">Sub District</label>
+            <select class="form-control" th:name="subDistrictId" id="subDistrictId" placeholder="Sub District">
+              <option value="">Select Sub District</option>
+            </select>
+          </div>
+
+          <div class="form-group row">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" th:name="address" id="address" placeholder="Address">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer justify-content-between">
+      <button type="submit" class="btn btn-info">Save</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </form>
+</div>

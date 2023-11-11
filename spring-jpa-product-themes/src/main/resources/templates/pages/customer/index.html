@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Index</title>
+</head>
+<body>
+<!-- wajib ada-->
+  <div class="container-fluid" layout:fragment="content">
+    <!-- Small boxes (Stat box) wajib ada-->
+    <div class="row">
+      <!-- wajib ada -->
+      <div class="col-12">
+        <!-- widged -->
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Customer Data</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 300px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-success">
+                    <i class="fas fa-search"></i>
+                  </button>
+
+                  <a th:href="@{/customer/add}" class="btn btn-success">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Account No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="data :${dataList}">
+                <td th:text="${data.id}"></td>
+                <td th:text="${data.accountNo}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.email}"></td>
+                <td th:text="${data.phoneNumber}"></td>
+                <td>
+                  <div th:each="addr : ${data.address}">
+                    Address Name : <strong th:text="${addr.addressName}"></strong> <br/>
+                    Country: <strong th:text="${addr.countryName}"></strong> <br/>
+                    Province: <strong th:text="${addr.provinceName}"></strong> <br/>
+                    District: <strong th:text="${addr.districtName}"></strong> <br/>
+                    Sub District: <strong th:text="${addr.subDistrictName}"></strong> <br/>
+                    Address: <strong th:text="${addr.address}"></strong> <br/>
+                  </div>
+                </td>
+                <td>
+                  <a th:href="@{/customer/edit/{id}(id=${data.id}) }" class="btn btn-xs btn-warning">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a th:href="@{/customer/detail/{id}(id=${data.id}) }" class="btn btn-xs btn-info">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                  <a th:href="@{/customer/delete/{id}(id=${data.id}) }" class="btn btn-xs btn-danger">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
