@@ -30,6 +30,7 @@ public class DatabaseInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Database init is called ...!");
+        // generate category
         intiCategory();
         //generate assessment
         initAssessment();

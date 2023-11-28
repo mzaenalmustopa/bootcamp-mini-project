@@ -1,12 +1,11 @@
 package com.mznalmstpa.springjpa.model;
 
 import com.mznalmstpa.springjpa.entity.CustomerAddressEntity;
-import com.mznalmstpa.springjpa.entity.CustomerEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 
 @Data
 @AllArgsConstructor
