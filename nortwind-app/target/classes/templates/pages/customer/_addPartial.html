@@ -1,0 +1,85 @@
+<div class="card card-success">
+  <div class="card-header">
+    <h3 class="card-title">New Customer</h3>
+  </div>
+  <form th:action="@{~/customer/save}" method="post" class="form-horizontal">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label for="companyName" class="col-sm-4 col-form-label">Company Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="companyName" id="companyName" placeholder="Enter Company Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="contactName" class="col-sm-4 col-form-label">Contact Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="contactName" id="contactName" placeholder="Enter Contact Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="contactTitle" class="col-sm-4 col-form-label">Contact Title</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="contactTitle" id="contactTitle" placeholder="Enter Contact Title">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="address" class="col-sm-4 col-form-label">Address</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="address" id="address" placeholder="Enter Address">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="city" class="col-sm-4 col-form-label">City</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="city" id="city" placeholder="Enter City">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label for="region" class="col-sm-4 col-form-label">Region</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="region" id="region" placeholder="Enter Region">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="postalCode" class="col-sm-4 col-form-label">Postal Code</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="postalCode" id="postalCode" placeholder="Enter Postal Code">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="country" class="col-sm-4 col-form-label">Country</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="country" id="country" placeholder="Enter Country">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="phone" class="col-sm-4 col-form-label">Phone</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="phone" id="phone" placeholder="Enter Phone">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="fax" class="col-sm-4 col-form-label">Fax</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control rounded-pill" name="fax" id="fax" placeholder="Enter Fax">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer justify-content-between">
+      <button type="submit" class="btn btn-outline-success">Save</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+
+  </form>
+</div>

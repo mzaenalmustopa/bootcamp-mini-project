@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Edit Address Type</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Edit Address Type</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Edit Address Type</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/address-type/update}" method="post">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="addressCodeType">Address Type Code</label>
+                        <input type="text" class="form-control" name="addressCodeType" id="addressCodeType" th:value="${addressType.addressCodeType}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="addressDescType">Address Desc</label>
+                        <input type="text" class="form-control" name="addressDescType"id="addressDescType" th:value="${addressType.addressDescType}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="billing">billing</label>
+                        <input type="text" class="form-control" name="billing" id="billing" th:value="${addressType.billing}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery">Delivery</label>
+                        <input type="text" class="form-control" name="delivery" id="delivery" th:value="${addressType.delivery}">
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <a class="btn btn-outline-success" th:href="@{~/address-type}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

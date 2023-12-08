@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Add Inventory Locations</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a> </li>
+            <li class="breadcrumb-item active">Add Inventory Locations</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Add Inventory Locations</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/inventory-loc/save}" method="post">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="productsId">Product</label>
+                        <select class="form-control" name="productsId" id="productsId">
+                            <option value="">Select One</option>
+                            <option th:each="product :${productList}" th:value="${product.id}"
+                                    th:text="${product.productName}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locationAddressId">Locations Address</label>
+                        <select class="form-control" name="locationAddressId" id="locationAddressId">
+                            <option value="">Select One</option>
+                            <option th:each="address :${addressList}" th:value="${address.id}"
+                                    th:text="${address.village}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantityStock">Quantity Stock</label>
+                        <input type="text" name="quantityStock" id="quantityStock" class="form-control"
+                               placeholder="Enter Quantity Stock">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderLevel">Re Order Level</label>
+                        <input type="text" name="orderLevel" id="orderLevel" class="form-control"
+                               placeholder="Enter Re Order level">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderQuantity">Re Order Quantity</label>
+                        <input type="text" name="orderQuantity" id="orderQuantity" class="form-control"
+                               placeholder="Re Order Quantity">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="averageMonth">Usage Average Month</label>
+                        <input type="text" name="averageMonth" id="averageMonth" class="form-control"
+                               placeholder="Enter Usage Average Month">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inventoryDetails">Inventory Details</label>
+                        <input type="text" name="inventoryDetails" id="inventoryDetails" class="form-control"
+                               placeholder="Enter Inventory Details">
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                    <a class="btn btn-outline-success" th:href="@{~/inventory-loc}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

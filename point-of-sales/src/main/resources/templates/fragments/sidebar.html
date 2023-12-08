@@ -1,0 +1,139 @@
+<!-- Main Sidebar Container -->
+<aside xmlns:th="http://www.thymeleaf.org" th:fragment="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <img th:src="@{~/dist/img/pos-image.jpg}" alt="Pos Logo" class="brand-image img-bordered-sm elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Point Of Sales</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img th:src="@{~/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a th:href="@{~/profile}" class="d-block">M Zaenal Mustopa</a>
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" role="menu"
+                data-accordion="false">
+                <li class="nav-item menu-open">
+                </li>
+            </ul>
+        </nav>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a th:href="@{~/customer}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/address}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Address</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/customer-address}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer Address</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        <a th:href="@{~/products}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Products</p>
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/supplier}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Suppliers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/product-suppliers}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product Suppliers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/product-type}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product Type</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/address-type}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Address Type</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/payment-method}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Payment Method</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/shopping-basket}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Shopping Basket</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/basket-items}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Basket Items</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/inventory-loc}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Inventory Locations</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{~/supplier-loc}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Supplier Locations</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

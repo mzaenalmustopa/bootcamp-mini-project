@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0"> Inventory Locations Details</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a> </li>
+            <li class="breadcrumb-item active"> Inventory Locations Details</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title"> Inventory Locations Details</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/inventory-loc/save}" method="post">
+                <!-- id di hidden -->
+                <input type="hidden" name="id" th:value="${inventory.id}">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="productId">Product</label>
+                        <input type="text" name="productId" id="productId" th:value="${inventory.productName}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locationAddressId">Locations Address</label>
+                        <input type="text" name="locationAddressId" id="locationAddressId" th:value="${inventory.locationAddressName}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantityStock">Quantity Stock</label>
+                        <input type="text" name="quantityStock" id="quantityStock" class="form-control"
+                               th:value="${inventory.quantityStock}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderLevel">Re Order Level</label>
+                        <input type="text" name="orderLevel" id="orderLevel" class="form-control"
+                               th:value="${inventory.orderLevel}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orderQuantity">Re Order Quantity</label>
+                        <input type="text" name="orderQuantity" id="orderQuantity" class="form-control"
+                               th:value="${inventory.orderQuantity}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="averageMonth">Usage Average Month</label>
+                        <input type="text" name="averageMonth" id="averageMonth" class="form-control"
+                               th:value="${inventory.averageMonth}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inventoryDetails">Inventory Details</label>
+                        <input type="text" name="inventoryDetails" id="inventoryDetails" class="form-control"
+                               th:value="${inventory.inventoryDetails}">
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                    <a class="btn btn-outline-success" th:href="@{~/inventory-loc}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

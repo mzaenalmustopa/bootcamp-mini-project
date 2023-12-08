@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0"> ProductSupplier Detail</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a> </li>
+            <li class="breadcrumb-item active"> ProductSupplier Detail</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title"> ProductSupplier Detail</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/ProductSuppliers/save}" method="post">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="productId">Product</label>
+                        <input type="text" name="productId" id="productId" class="form-control" th:value="${productSuppliers.productName}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierId">Supplier Code</label>
+                        <input type="text" name="supplierId" id="supplierId" class="form-control" th:value="${productSuppliers.supplierName}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valueSupplied"> Value Supplied</label>
+                        <input type="text" class="form-control" name="valueSupplied" id="valueSupplied" th:value="${productSuppliers.valueSupplied}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalSupplied"> Total Supplied</label>
+                        <input type="text" class="form-control" name="totalSupplied" id="totalSupplied" th:value="${productSuppliers.totalSupplied}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstSupplied"> First Supplied</label>
+                        <input type="text" class="form-control" name="firstSupplied" id="firstSupplied" th:value="${productSuppliers.firstSupplied}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastSupplied"> Last Supplied</label>
+                        <input type="text" class="form-control" name="lastSupplied" id="lastSupplied" th:value="${productSuppliers.lastSupplied}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery">Delivery</label>
+                        <input type="text" class="form-control" name="delivery" id="delivery" th:value="${productSuppliers.delivery}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="standardPrice">Standard Price</label>
+                        <input type="text" class="form-control" name="standardPrice" id="standardPrice" th:value="${productSuppliers.standardPrice}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discount">Discount</label>
+                        <input type="text" class="form-control" name="discount" id="discount" th:value="${productSuppliers.discount}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minOrder">Min Order</label>
+                        <input type="text" class="form-control" name="minOrder" id="minOrder" th:value="${productSuppliers.minOrder}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxOrder">Max Order</label>
+                        <input type="text" class="form-control" name="maxOrder" id="maxOrder" th:value="${productSuppliers.maxOrder}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemSupplierDetails">Item Supplier Details</label>
+                        <input type="text" class="form-control" name="itemSupplierDetails" id="itemSupplierDetails" th:value="${productSuppliers.itemSupplierDetails}">
+                    </div>
+
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <a class="btn btn-outline-success" th:href="@{~/product-supplier}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

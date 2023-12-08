@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Edit Customer</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a> </li>
+            <li class="breadcrumb-item active">Edit Customer</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Edit Customer</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/customer/update}" method="post">
+                <!-- id di hidden -->
+                <input type="hidden" name="id" th:value="${customer.id}">
+                <!-- form start -->
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="paymentMethodCodeId">Payment Method</label>
+                        <select id="paymentMethodCodeId" class="form-control" name="paymentMethodCodeId">
+                            <option value="">Select One</option>
+                            <option th:each="paymentMethod :${paymentMethodList}" th:value="${paymentMethod.id}"
+                                    th:text="${paymentMethod.paymentMethodCode}"
+                                    th:selected="${customer.paymentMethodCodeId == paymentMethod.id}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" class="form-control" name="customerName" id="customerName"
+                               placeholder="Enter Customer Name" th:value="${customer.customerName}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerPhone">Customer Phone</label>
+                        <input type="text" class="form-control" name="customerPhone" id="customerPhone"
+                               placeholder="Enter Customer Phone" th:value="${customer.customerPhone}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerEmail">Customer Email</label>
+                        <input type="text" class="form-control" name="customerEmail" id="customerEmail"
+                               placeholder="Enter Customer Email" th:value="${customer.customerEmail}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateCustomer">Customer Date</label>
+                        <input type="date" class="form-control" name="dateCustomer" id="dateCustomer"
+                               placeholder="Enter Customer Date" th:value="${customer.dateCustomer}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentDetails">Payment Details</label>
+                        <input type="text" class="form-control" name="paymentDetails" id="paymentDetails"
+                               placeholder="Enter Payment Details" th:value="${customer.paymentDetails}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otherCustomerDetails">Other Details</label>
+                        <input type="text" class="form-control" name="otherCustomerDetails" id="otherCustomerDetails"
+                               placeholder="Enter Other Details" th:value="${customer.otherCustomerDetails}">
+                    </div>
+
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                    <a class="btn btn-outline-success" th:href="@{~/customer}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

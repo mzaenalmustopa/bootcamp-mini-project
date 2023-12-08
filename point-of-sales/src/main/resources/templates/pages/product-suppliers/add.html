@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Add Product Supplier</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a> </li>
+            <li class="breadcrumb-item active">Add Product Supplier</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Add Product Supplier</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/product-suppliers/save}" method="post">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="productId">Product</label>
+                        <select id="productId" name="productId" class="form-control">
+                            <option value="">Select One</option>
+                            <option th:each="product :${productList}" th:value="${product.id}" th:text="${product.productName}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierId">Supplier Code</label>
+                        <select id="supplierId" name="supplierId" class="form-control">
+                            <option value="">Select One</option>
+                            <option th:each="supplier :${supplierList}" th:value="${supplier.id}" th:text="${supplier.supplierCode}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valueSupplied"> Value Supplied</label>
+                        <input type="text" class="form-control" name="valueSupplied" id="valueSupplied"
+                               placeholder="Enter Value Supplied">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalSupplied"> Total Supplied</label>
+                        <input type="text" class="form-control" name="totalSupplied" id="totalSupplied"
+                               placeholder="Enter Total Supplied">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstSupplied"> First Supplied</label>
+                        <input type="text" class="form-control" name="firstSupplied" id="firstSupplied"
+                               placeholder="Enter First Supplied">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastSupplied"> Last Supplied</label>
+                        <input type="text" class="form-control" name="lastSupplied" id="lastSupplied"
+                               placeholder="Enter Last Supplied">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delivery">Delivery</label>
+                        <input type="text" class="form-control" name="delivery" id="delivery"
+                               placeholder="Enter Delivery">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="standardPrice">Standard Price</label>
+                        <input type="text" class="form-control" name="standardPrice" id="standardPrice"
+                               placeholder="Enter Standard Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discount">Discount</label>
+                        <input type="text" class="form-control" name="discount" id="discount"
+                               placeholder="Enter Discount">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="minOrder">Min Order</label>
+                        <input type="text" class="form-control" name="minOrder" id="minOrder"
+                               placeholder="Enter Min Order">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxOrder">Max Order</label>
+                        <input type="text" class="form-control" name="maxOrder" id="maxOrder"
+                               placeholder="Enter Max Order">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemSupplierDetails">Item Supplier Details</label>
+                        <input type="text" class="form-control" name="itemSupplierDetails" id="itemSupplierDetails"
+                               placeholder="Enter Supplier Details">
+                    </div>
+
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
+                    <a class="btn btn-outline-success" th:href="@{~/product-supplier}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

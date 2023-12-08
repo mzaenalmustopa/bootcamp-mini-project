@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Detail Address</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a> </li>
+            <li class="breadcrumb-item active">Detail Address</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">Detail Address</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/address/save}" method="post">
+                <!-- id di hidden -->
+                <input type="hidden" name="id" th:value="${address.id}">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="noHome">No Home</label>
+                        <input type="text" class="form-control" name="noHome" id="noHome"
+                               th:value="${address.noHome}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input type="text" class="form-control" name="street" id="street"
+                               th:value="${address.street}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="village">Village</label>
+                        <input type="text" class="form-control" name="village" id="village"
+                               th:value="${address.village}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subDistrict">Sub District</label>
+                        <input type="text" class="form-control" name="subDistrict" id="subDistrict"
+                               th:value="${address.subDistrict}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regency">Regency</label>
+                        <input type="text" class="form-control" name="regency" id="regency"
+                               th:value="${address.regency}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" id="city"
+                               th:value="${address.city}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province">Province</label>
+                        <input type="text" class="form-control" name="province" id="province"
+                               th:value="${address.province}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" name="country" id="country"
+                               th:value="${address.country}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" class="form-control" name="postalCode" id="postalCode"
+                               th:value="${address.postalCode}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otherDetails">Other Details</label><br>
+                        <input type="text" class="form-control" name="otherDetails" id="otherDetails"
+                               th:value="${address.otherDetails}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

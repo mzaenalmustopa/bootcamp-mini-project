@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home-Index</title>
+</head>
+<body>
+<div class="container-fluid" layout:fragment="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>Category</h3>
+
+                    <p>List Category And Products</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-list-alt"></i>
+                </div>
+                <a th:href="@{~/category}" class="small-box-footer">More Info Click Here <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>Supplier</h3>
+
+                    <p>Supplier</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-list-alt"></i>
+                </div>
+                <a th:href="@{~/supplier}" class="small-box-footer">More Info Click Here <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>Customer</h3>
+
+                    <p>customer data</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-person-booth"></i>
+                </div>
+                <a th:href="@{~/customer}" class="small-box-footer">More Info Click Here <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>65</h3>
+
+                    <p>Unique Visitors</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- /.row -->
+</div>
+</body>
+</html>

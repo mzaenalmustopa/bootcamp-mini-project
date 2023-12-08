@@ -1,0 +1,126 @@
+<div class="card card-success">
+  <div class="card-header">
+    <h3 class="card-title">New Category</h3>
+  </div>
+  <form th:action="@{~/category/save}" method="post" class="form-horizontal">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <!-- card category -->
+          <div class="form-group row">
+            <label for="categoryName" class="col-sm-4 col-form-label">Category Name</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control rounded-pill" name="categoryName" id="categoryName" placeholder="Enter Category Name">
+            </div>
+          </div>
+        </div>
+        <!-- card category -->
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group row">
+            <label for="description" class="col-sm-4 col-form-label">description</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control rounded-pill" name="description" id="description" placeholder="Enter Unit Order">
+            </div>
+          </div>
+        </div>
+
+        <!-- /. card products -->
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">New Products :</h3>
+              <div class="card-tools">
+                <a th:href="@{~/category/add-products}">
+                </a>
+              </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Supplier</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <!-- /. card supplier -->
+                        <div class="form-group row">
+                          <label for="supplierId" class="col-sm-4 col-form-label">Supplier Name</label>
+                          <div class="col-sm-8">
+                            <select class="form-control custom-select rounded-pill" id="supplierId" name="supplierId" th:name="|products[0].supplierId|">
+                              <option value="">Select One</option>
+                              <option th:each="supplier :${supplierList}" th:value="${supplier.id}"
+                                      th:text="${supplier.companyName}"></option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- products -->
+              <div class="col-6">
+                <div class="form-group row">
+                  <label for="productName" class="col-sm-4 col-form-label">Product Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="productName" id="productName"
+                           placeholder="Enter Product Name" th:name="|products[0].productName|">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="quantity" class="col-sm-4 col-form-label">Quantity</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="quantity" id="quantity"
+                           placeholder="Enter Quantity" th:name="|products[0].quantity|">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="price" class="col-sm-4 col-form-label">Price</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="price" id="price"
+                           placeholder="Enter Price" th:name="|products[0].price|">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="stock" class="col-sm-4 col-form-label">Stock</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="stock" id="stock"
+                           placeholder="Enter Stock" th:name="|products[0].stock|">
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group row">
+                  <label for="unitOrder" class="col-sm-4 col-form-label">Unit Order</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="unitOrder" id="unitOrder"
+                           placeholder="Enter Order" th:name="|products[0].unitOrder|">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="reOrder" class="col-sm-4 col-form-label">Re Order</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="reOrder" id="reOrder"
+                           placeholder="Enter Stock" th:name="|products[0].reOrder|">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="discount" class="col-sm-4 col-form-label">Discount</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control rounded-pill" name="discount" id="discount"
+                           placeholder="Enter Order" th:name="|products[0].discount|">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="card-footer justify-content-between">
+      <button type="submit" class="btn btn-outline-success">Save</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+    </div>
+  </form>
+</div>

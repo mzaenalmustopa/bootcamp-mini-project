@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0"> Payment Method Detail</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a> </li>
+            <li class="breadcrumb-item active"> Payment Method Detail</li>
+        </ol>
+    </div>
+</div>
+<div class="row" layout:fragment="content">
+    <!-- left column -->
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- general form elements -->
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title"> Payment Method Detail</h3>
+            </div>
+            <!-- /. card header -->
+            <form th:action="@{~/payment-method/save}" method="post">
+                <!-- id hidden -->
+                <input type="hidden" name="id" th:value="${paymentMethod.id}">
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="paymentMethodCode">Payment Method Code </label>
+                        <input type="text" class="form-control" name="paymentMethodCode" id="paymentMethodCode" th:value="${paymentMethod.paymentMethodCode}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentDesc">Payment Desc</label>
+                        <input type="text" class="form-control" name="paymentDesc" id="paymentDesc" th:value="${paymentMethod.paymentDesc}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="creditCard"> Credit Card</label>
+                        <input type="text" class="form-control" name="creditCard" id="creditCard" th:value="${paymentMethod.creditCard}">
+                    </div>
+                </div>
+                <!-- card body -->
+                <div class="card-footer">
+                    <a class="btn btn-outline-success" th:href="@{~/payment-method}">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
