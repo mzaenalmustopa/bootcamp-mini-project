@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer - Add</title>
+</head>
+<body>
+<!-- wajib ada-->
+<div class="container-fluid" layout:fragment="content">
+  <!-- Small boxes (Stat box) wajib ada-->
+  <div class="row">
+    <!-- wajib ada -->
+    <div class="col-12">
+      <!-- widged -->
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Product New</h3>
+        </div>
+
+        <form th:action="@{/product/save}" method="post">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="code" class="col-sm-2 col-form-label">Code</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="code" name="code" placeholder="code">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" placeholder="name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="price" class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="expireDate" class="col-sm-2 col-form-label">Expire Date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="expireDate" name="expireDate">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="categoryId" class="col-sm-2 col-form-label">Category</label>
+              <div class="col-sm-10">
+                <select id="categoryId" name="categoryId" class="form-control">
+                  <option th:each="item: ${categoryList}" th:text="${item.name}" th:value="${item.id}"></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button type="submit" class="btn btn-info">Submit</button>
+            <a th:ref="@{~/product}" class="btn btn-default float-right">Cancel</a>
+          </div>
+          <!-- /.card-footer -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
