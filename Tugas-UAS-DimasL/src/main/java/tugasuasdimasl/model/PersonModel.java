@@ -3,6 +3,7 @@ package tugasuasdimasl.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import tugasuasdimasl.entity.PersonEntity;
 
 @Data
@@ -17,6 +18,6 @@ public class PersonModel {
     private String address;
 
     public PersonModel(PersonEntity result) {
-
+        BeanUtils.copyProperties(result, this);
     }
 }

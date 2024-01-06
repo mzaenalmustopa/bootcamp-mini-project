@@ -59,6 +59,7 @@ public class PersonServiceImpl implements PersonService {
 
         try {
             personRepo.delete(entity);
+            log.info("Delete data person from database success");
             return Optional.of(new PersonModel(entity));
         } catch (Exception e){
             log.error("Delete Dosen to database failed, error{}",e.getMessage());

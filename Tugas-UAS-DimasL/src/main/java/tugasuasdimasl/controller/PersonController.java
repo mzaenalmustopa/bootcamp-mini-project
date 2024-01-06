@@ -41,7 +41,7 @@ public class PersonController {
         return new ModelAndView("redirect:/person");
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/delete/{id}")
     public ModelAndView delete(@ModelAttribute PersonModel request){
        Optional <PersonModel> model = personService.getById(request.getId());
        if (model == null){

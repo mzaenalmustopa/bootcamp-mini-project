@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import tugasuasdimasl.model.PersonModel;
 
 import java.util.UUID;
@@ -35,6 +36,7 @@ public class PersonEntity {
     private String address;
 
     public PersonEntity(PersonModel request) {
+        BeanUtils.copyProperties(request , this);
         this.id = UUID.randomUUID().toString();
     }
 }

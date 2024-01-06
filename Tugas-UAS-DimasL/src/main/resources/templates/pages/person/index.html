@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Index Person</title>
 </head>
 <body>
+<h1>Index Person</h1>
+<a th:href="@{~/person/add}">Add Data Person</a>
+<table>
+    <thead>
+    <tr>
+        <td>First Name</td>
+        <td>Middle Name</td>
+        <td>Last Name</td>
+        <td>Address</td>
+        <td>#Action</td>
+    </tr>
+    </thead>
 
+    <tbody>
+    <tr th:each="data : ${personList}">
+        <td th:text="${data.firstName}"></td>
+        <td th:text="${data.middleName}"></td>
+        <td th:text="${data.lastName}"></td>
+        <td th:text="${data.address}"></td>
+        <td>
+            <a th:href="@{~/person/delete/{id}(id=${data.id})}">Delete</a> &nbsp;
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
