@@ -35,6 +35,12 @@ public class AddressEntity {
     @Column(name = "province")
     private String province;
 
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "postal_code")
+    private String postalCode;
+
     public AddressEntity(PersonModel request) {
         BeanUtils.copyProperties(request , this);
         this.id = UUID.randomUUID().toString();
