@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home-Index</title>
+</head>
+<body>
+<!-- breadcrumb -->
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a th:href="@{~/home}">Home</a></li>
+            <li class="breadcrumb-item">New Survey</li>
+        </ol>
+    </div>
+</div>
+<!-- /.breadcrumb -->
+
+<div class="container-fluid" layout:fragment="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Form Survey</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form th:action="@{~/survey-save}" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="provinceId">Provinsi</label>
+                        <input type="text" class="form-control" id="provinceId" name="provinceId" placeholder="Provinsi">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cityId">Kota / Kabupaten</label>
+                        <input type="text" class="form-control" id="cityId" name="cityId" placeholder="Kota / Kabupaten">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="districtId">Kecamatan</label>
+                        <input type="text" class="form-control" id="districtId" name="districtId" placeholder="Kecamatan">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="villageId">Kelurahan / Desa</label>
+                        <input type="text" class="form-control" id="villageId" name="villageId" placeholder="Kelurahan Desa">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tpsNo">TPS</label>
+                        <input type="text" class="form-control" id="tpsNo" name="tpsNo" placeholder="TPS">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeCount">Jenis Perhitungan</label>
+                        <input type="text" class="form-control" id="typeCount" name="typeCount" placeholder="Jenis Perhitungan">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 form-group">
+                            <label for="totalSuara1">Data 1</label>
+                            <input type="hidden" name="surveyData[0].surveyId" th:value="${data1.id}">
+                            <input type="text" class="form-control" id="totalSuara1" name="surveyData[0].totalSuara" placeholder="Suara 1">
+                        </div>
+
+                        <div class="col-4 form-group">
+                            <label for="totalSuara2">Data 2</label>
+                            <input type="hidden" name="surveyData[1].surveyId" th:value="${data2.id}">
+                            <input type="text" class="form-control" id="totalSuara2" name="surveyData[1].totalSuara" placeholder="Suara 2">
+                        </div>
+
+                        <div class="col-4 form-group">
+                            <label for="totalSuara3">Data 3</label>
+                            <input type="hidden" name="surveyData[2].surveyId" th:value="${data3.id}">
+                            <input type="text" class="form-control" id="totalSuara3" name="surveyData[2].totalSuara" placeholder="Suara 3">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
