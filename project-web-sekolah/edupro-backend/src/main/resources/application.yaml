@@ -1,0 +1,21 @@
+server:
+  port: 8085
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: P@ssW0rd32!
+    url: jdbc:mysql://localhost:3306/edupro_app_db
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
