@@ -48,7 +48,7 @@ public class GedungServiceImpl implements GedungService {
     @Override
     public Optional<GedungResponse> getById(String kode) {
         try {
-            var url = Strings.concat(backEndUrl.gedungUrl(), "/" + kode + "/");
+            var url = Strings.concat(backEndUrl.gedungUrl(), "/" + kode);
             ResponseEntity<Response> response = restTemplate.getForEntity(url, Response.class);
             if (response.getStatusCode() == HttpStatus.OK){
                 byte[] json = objectMapper.writeValueAsBytes(Objects.requireNonNull(response.getBody()).getData());

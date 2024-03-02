@@ -83,8 +83,20 @@ public class GedungController {
             return new ModelAndView("pages/master/error/not-found");
         }
 
-        view.addObject("kelompok", result);
+        view.addObject("gedung", result);
         return view;
+    }
+
+    @PostMapping("/remove")
+    public ModelAndView delete(@ModelAttribute("gedung") @Valid GedungRequest gedungRequest,BindingResult result ){
+        ModelAndView view = new ModelAndView("pages/master/gedung/delete");
+        if (result.hasErrors()){
+            view.addObject("gedung", gedungRequest);
+            return view;
+        }
+
+        var response = gedungService.delete(gedungRequest).orElse(null);
+        return new ModelAndView("redirect:/master/gedung");
     }
 
     @GetMapping("/data")

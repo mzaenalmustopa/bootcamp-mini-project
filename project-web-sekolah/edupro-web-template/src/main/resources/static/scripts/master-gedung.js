@@ -116,7 +116,7 @@ $(function () {
     // edit data
     $("#table-gedung").on('click', '.btn-edit', function () {
         var url = $(this).attr('href');
-        showModal(url, ' ');
+        showModal(url, '');
     });
 
     //delete data
