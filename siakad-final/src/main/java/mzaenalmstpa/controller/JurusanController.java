@@ -29,7 +29,7 @@ public class JurusanController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("jurusan/index.html");
+        ModelAndView view = new ModelAndView("jurusan/index");
         List<JurusanModel> result = service.get();
         view.addObject("dataList", result);
         return view;
@@ -37,7 +37,7 @@ public class JurusanController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("jurusan/add.html");
+        ModelAndView view = new ModelAndView("jurusan/add");
         List<FakultasModel> result = fakultasService.get();
         view.addObject("fakultasList", result);
         view.addObject("jurusan", new JurusanModel());
@@ -46,7 +46,7 @@ public class JurusanController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("jurusan") JurusanModel request, BindingResult result){
-        ModelAndView view = new ModelAndView("jurusan/add.html");
+        ModelAndView view = new ModelAndView("jurusan/add");
         if (Boolean.FALSE.equals(service.validCode(request))){
             FieldError fieldError = new FieldError("jurusan","code","invalid code");
             result.addError(fieldError);
@@ -74,7 +74,7 @@ public class JurusanController {
         }
         List<FakultasModel> fakultas = fakultasService.get();
 
-        ModelAndView view = new ModelAndView("jurusan/edit.html");
+        ModelAndView view = new ModelAndView("jurusan/edit");
         view.addObject("jurusan", jurusan);
         view.addObject("fakultasList", fakultas);
         return view;
@@ -83,7 +83,7 @@ public class JurusanController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("jurusan") JurusanModel request, BindingResult result){
         if (result.hasErrors()){
-            ModelAndView view = new ModelAndView("jurusan/edit.html");
+            ModelAndView view = new ModelAndView("jurusan/edit");
             view.addObject("jurusan", request);
             return view;
         }
@@ -98,7 +98,7 @@ public class JurusanController {
             return new ModelAndView("redirect:/jurusan");
         }
 
-        ModelAndView view = new ModelAndView("jurusan/detail.html");
+        ModelAndView view = new ModelAndView("jurusan/detail");
         view.addObject("data", fakultas);
         return view;
     }

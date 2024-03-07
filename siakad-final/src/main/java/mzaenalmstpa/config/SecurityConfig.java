@@ -1,17 +1,16 @@
 package mzaenalmstpa.config;
 
+import lombok.RequiredArgsConstructor;
 import mzaenalmstpa.config.security.CustomAccessDeniedHandler;
 import mzaenalmstpa.config.security.CustomAuthenticationFailureHandler;
 import mzaenalmstpa.config.security.CustomLogoutSuccessHandler;
 import mzaenalmstpa.config.security.CustomUrlAuthenticationSuccessHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,36 +20,33 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
-    @Value("${spring.security.debug:false}")
-    boolean securityDebug;
 
-    private UserPrincipalService userService;
+    private final UserPrincipalService userService;
 
-    @Autowired
-    public SecurityConfig(UserPrincipalService userService) {
-        this.userService = userService;
-    }
+    @Value("${application.secretKey}")
+    private String secretKey;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login/**" ).anonymous()
-                .antMatchers("/plugins/**","/dist/**","/mst/lookup").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").loginProcessingUrl("/login")
-                .successHandler(myAuthenticationSuccessHandler()).failureUrl("/login?error=true")
-                //.defaultSuccessUrl("/dashboard", true)
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").deleteCookies("JSESSIONID")
-                .and()
-                .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(86400)
-                .and()
-                .csrf().disable();
-        //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/plugins/**","/dist/**").permitAll()
+                        .anyRequest().authenticated()
+                ).formLogin(form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/home").permitAll()
+                ).logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll()
+                ).rememberMe((remember) -> remember
+                        .rememberMeParameter("remember-me")
+                        .key(secretKey)
+                        .tokenValiditySeconds(86400)
+                );
 
         return http.build();
     }
@@ -58,13 +54,6 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
         return new CustomUrlAuthenticationSuccessHandler();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.debug(securityDebug)
-                .ignoring()
-                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
     }
 
     @Bean

@@ -24,7 +24,7 @@ public class MataKuliahController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("matkul/index.html");
+        ModelAndView view = new ModelAndView("matkul/index");
         List<MataKuliahModel> result = mataKuliahService.get();
         view.addObject("dataList", result);
         return view;
@@ -32,14 +32,14 @@ public class MataKuliahController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("matkul/add.html");
+        ModelAndView view = new ModelAndView("matkul/add");
         view.addObject("matkul", new MataKuliahModel());
         return view;
     }
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("matkul") MataKuliahModel request, BindingResult result) {
-        ModelAndView view = new ModelAndView("matkul/add.html");
+        ModelAndView view = new ModelAndView("matkul/add");
         if (Boolean.FALSE.equals(mataKuliahService.validCode(request))){
             FieldError fieldError = new FieldError("matkul","code","Code "+ request.getCode() +" already exist");
             result.addError(fieldError);
@@ -64,7 +64,7 @@ public class MataKuliahController {
             return new ModelAndView("redirect:/matkul");
         }
 
-        ModelAndView view = new ModelAndView("matkul/edit.html");
+        ModelAndView view = new ModelAndView("matkul/edit");
         view.addObject("matkul", matkul);
         return view;
     }
@@ -72,7 +72,7 @@ public class MataKuliahController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("matkul") MataKuliahModel request, BindingResult result) {
         if (result.hasErrors()){
-            ModelAndView view = new ModelAndView("matkul/edit.html");
+            ModelAndView view = new ModelAndView("matkul/edit");
             view.addObject("matkul", request);
             return view;
         }
@@ -87,7 +87,7 @@ public class MataKuliahController {
             return new ModelAndView("redirect:/matkul");
         }
 
-        ModelAndView view = new ModelAndView("matkul/detail.html");
+        ModelAndView view = new ModelAndView("matkul/detail");
         view.addObject("data", matkul);
         return view;
     }

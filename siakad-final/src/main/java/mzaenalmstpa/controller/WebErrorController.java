@@ -23,22 +23,22 @@ public class WebErrorController implements org.springframework.boot.web.servlet.
             Integer statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()){
-                return new ModelAndView("errors/error-404.html");
+                return new ModelAndView("errors/error-404");
             }
             else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return new ModelAndView("errors/error-500.html");
+                return new ModelAndView("errors/error-500");
             }
         }
-        return new ModelAndView("errors/index.html");
+        return new ModelAndView("errors/index");
     }
 
     @GetMapping("/accessDenied")
     public ModelAndView accessDenied(){
-        return new ModelAndView("/errors/accessDenied.html");
+        return new ModelAndView("/errors/accessDenied");
     }
 
     @GetMapping("/authenticationFailure")
     public ModelAndView authenticationFailure(){
-        return new ModelAndView("/errors/authenticationFailure.html");
+        return new ModelAndView("/errors/authenticationFailure");
     }
 }

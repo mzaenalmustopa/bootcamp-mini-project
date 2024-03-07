@@ -1,8 +1,11 @@
 package mzaenalmstpa.impl;
 
-import com.aronsoft.webmvc.entity.KelasEntity;
-import com.aronsoft.webmvc.repository.KelasRepository;
-import com.aronsoft.webmvc.util.DateUtil;
+
+import mzaenalmstpa.entity.KelasEntity;
+import mzaenalmstpa.model.KelasModel;
+import mzaenalmstpa.repository.KelasRepository;
+import mzaenalmstpa.service.impl.KelasServiceImpl;
+import mzaenalmstpa.util.DateUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -21,7 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Component
 class KelasServiceImplTest {
+
     @Autowired
     @InjectMocks
     private KelasServiceImpl service;
@@ -57,7 +63,7 @@ class KelasServiceImplTest {
     void get() {
         when(repository.findAll()).thenReturn(kelasList);
 
-        List<KelasEntity> result = service.get();
+        List<KelasModel> result = service.get();
         assertNotNull(result);
         assertEquals(4, result.size());
         assertEquals("K001", result.get(0).getKode());

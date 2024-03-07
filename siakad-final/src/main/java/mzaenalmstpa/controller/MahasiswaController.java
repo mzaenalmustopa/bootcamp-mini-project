@@ -35,7 +35,7 @@ public class MahasiswaController {
     }
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("mahasiswa/index.html");
+        ModelAndView view = new ModelAndView("mahasiswa/index");
         List<MahasiswaModel> result = mahasiswaService.get();
         view.addObject("dataList", result);
         return view;
@@ -43,7 +43,7 @@ public class MahasiswaController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("mahasiswa/add.html");
+        ModelAndView view = new ModelAndView("mahasiswa/add");
         //List<JurusanModel> result = jurusanService.get();
         //view.addObject("jurusanList", result);
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
@@ -58,7 +58,7 @@ public class MahasiswaController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("mahasiswa") MahasiswaModel request, BindingResult result){
-        ModelAndView view = new ModelAndView("mahasiswa/add.html");
+        ModelAndView view = new ModelAndView("mahasiswa/add");
         if (Boolean.FALSE.equals(mahasiswaService.validNim(request))){
             FieldError fieldError = new FieldError("mahasiswa","nim","invalid nim");
             result.addError(fieldError);
@@ -91,7 +91,7 @@ public class MahasiswaController {
         }
         List<JurusanModel> jurusan = jurusanService.get();
 
-        ModelAndView view = new ModelAndView("mahasiswa/edit.html");
+        ModelAndView view = new ModelAndView("mahasiswa/edit");
         view.addObject("jurusan", jurusan);
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
         view.addObject("agamaList", lookupService.getByGroup(Constants.AGAMA));
@@ -106,7 +106,7 @@ public class MahasiswaController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("mahasiswa") MahasiswaModel request, BindingResult result){
         if (result.hasErrors()){
-            ModelAndView view = new ModelAndView("mahasiswa/edit.html");
+            ModelAndView view = new ModelAndView("mahasiswa/edit");
             List<JurusanModel> data = jurusanService.get();
             view.addObject("jurusanList", data);
             view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
@@ -128,7 +128,7 @@ public class MahasiswaController {
             return new ModelAndView("redirect:/mahasiswa");
         }
 
-        ModelAndView view = new ModelAndView("mahasiswa/detail.html");
+        ModelAndView view = new ModelAndView("mahasiswa/detail");
         view.addObject("data", result);
         return view;
     }

@@ -30,7 +30,7 @@ public class RuangController {
 
     @GetMapping
     public ModelAndView index() {
-        ModelAndView view = new ModelAndView("ruang/index.html");
+        ModelAndView view = new ModelAndView("ruang/index");
         List<RuangModel> result = ruangService.get();
         view.addObject("dataList", result);
         return view;
@@ -38,7 +38,7 @@ public class RuangController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("ruang/add.html");
+        ModelAndView view = new ModelAndView("ruang/add");
         List<GedungModel> result = gedungService.get();
         view.addObject("gedungList", result);
         view.addObject("ruang", new RuangModel());
@@ -47,7 +47,7 @@ public class RuangController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("ruang") RuangModel request, BindingResult result) {
-        ModelAndView view = new ModelAndView("ruang/add.html");
+        ModelAndView view = new ModelAndView("ruang/add");
         if (Boolean.FALSE.equals(ruangService.validCode(request))){
             FieldError fieldError = new FieldError("ruang","code", "Invalid code");
             result.addError(fieldError);
@@ -75,7 +75,7 @@ public class RuangController {
         }
         List<GedungModel> gedung = gedungService.get();
 
-        ModelAndView view = new ModelAndView("ruang/edit.html");
+        ModelAndView view = new ModelAndView("ruang/edit");
         view.addObject("ruang", ruang);
         view.addObject("gedungList", gedung);
         return view;
@@ -85,7 +85,7 @@ public class RuangController {
     public ModelAndView update(@Valid @ModelAttribute("ruang") RuangModel request, BindingResult result) {
         if (result.hasErrors()){
             List<GedungModel> gedungModels = gedungService.get();
-            ModelAndView view = new ModelAndView("ruang/edit.html");
+            ModelAndView view = new ModelAndView("ruang/edit");
             view.addObject("ruang", request);
             view.addObject("gedungList", gedungModels);
             return view;
@@ -100,7 +100,7 @@ public class RuangController {
         if (ruang == null) {
             return new ModelAndView("redirect:/ruang");
         }
-        ModelAndView view = new ModelAndView("ruang/detail.html");
+        ModelAndView view = new ModelAndView("ruang/detail");
         view.addObject("data", ruang);
         return view;
     }

@@ -1,8 +1,9 @@
 package mzaenalmstpa.impl;
 
-import com.aronsoft.webmvc.entity.JurusanEntity;
-import com.aronsoft.webmvc.model.JurusanModel;
-import com.aronsoft.webmvc.repository.JurusanRepository;
+import mzaenalmstpa.entity.JurusanEntity;
+import mzaenalmstpa.model.JurusanModel;
+import mzaenalmstpa.repository.JurusanRepository;
+import mzaenalmstpa.service.impl.JurusanServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,8 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Component
 class JurusanServiceImplTest {
     @Autowired
     @InjectMocks

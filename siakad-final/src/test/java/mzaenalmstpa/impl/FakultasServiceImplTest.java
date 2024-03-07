@@ -1,8 +1,9 @@
 package mzaenalmstpa.impl;
 
-import com.aronsoft.webmvc.entity.FakultasEntity;
-import com.aronsoft.webmvc.model.FakultasModel;
-import com.aronsoft.webmvc.repository.FakultasRepository;
+import mzaenalmstpa.entity.FakultasEntity;
+import mzaenalmstpa.model.FakultasModel;
+import mzaenalmstpa.repository.FakultasRepository;
+import mzaenalmstpa.service.impl.FakultasServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Component
 class FakultasServiceImplTest {
     @Autowired
     @InjectMocks

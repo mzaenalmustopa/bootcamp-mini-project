@@ -25,7 +25,7 @@ public class FakultasController {
 
     @GetMapping
     public ModelAndView index() {
-        ModelAndView view = new ModelAndView("fakultas/index.html");
+        ModelAndView view = new ModelAndView("fakultas/index");
         List<FakultasModel> result = service.get();
         view.addObject("dataList", result);
         return view;
@@ -33,7 +33,7 @@ public class FakultasController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("fakultas/add.html");
+        ModelAndView view = new ModelAndView("fakultas/add");
         view.addObject("fakultas", new FakultasModel());
         return view;
 
@@ -41,7 +41,7 @@ public class FakultasController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("fakultas") FakultasModel request, BindingResult result) {
-        ModelAndView view = new ModelAndView("fakultas/add.html");
+        ModelAndView view = new ModelAndView("fakultas/add");
         if (Boolean.FALSE.equals(service.validCode(request))){
             FieldError fieldError = new FieldError("fakultas","code", "Code "+ request.getCode() +" already exist");
             result.addError(fieldError);
@@ -65,7 +65,7 @@ public class FakultasController {
             return new ModelAndView("redirect:/fakultas");
         }
 
-        ModelAndView view = new ModelAndView("fakultas/edit.html");
+        ModelAndView view = new ModelAndView("fakultas/edit");
         view.addObject("fakultas", fakultas);
         return view;
     }
@@ -73,7 +73,7 @@ public class FakultasController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("fakultas") FakultasModel request, BindingResult result) {
         if (result.hasErrors()){
-            ModelAndView view = new ModelAndView("fakultas/edit.html");
+            ModelAndView view = new ModelAndView("fakultas/edit");
             view.addObject("fakultas", request);
             return view;
         }
@@ -88,7 +88,7 @@ public class FakultasController {
             return new ModelAndView("redirect:/fakultas");
         }
 
-        ModelAndView view = new ModelAndView("fakultas/detail.html");
+        ModelAndView view = new ModelAndView("fakultas/detail");
         view.addObject("data", fakultas);
         return view;
     }

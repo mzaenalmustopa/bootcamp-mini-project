@@ -29,7 +29,7 @@ public class KelasDetailController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("kelasdetail/index.html");
+        ModelAndView view = new ModelAndView("kelasdetail/index");
         List<KelasDetailModel> result = service.get();
         view.addObject("dataList", result);
         return view;
@@ -37,7 +37,7 @@ public class KelasDetailController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("kelasdetail/add.html");
+        ModelAndView view = new ModelAndView("kelasdetail/add");
         List<KelasModel> result = kelasService.get();
         List<MahasiswaModel> result1 = mahasiswaService.get();
         view.addObject("kelasList", result);
@@ -60,7 +60,7 @@ public class KelasDetailController {
         List<KelasModel> kelas = kelasService.get();
         List<MahasiswaModel> mahasiswa = mahasiswaService.get();
 
-        ModelAndView view = new ModelAndView("kelasdetail/edit.html");
+        ModelAndView view = new ModelAndView("kelasdetail/edit");
         view.addObject("data", kelasDetailModel);
         view.addObject("kelasList", kelas);
         view.addObject("mahasiswaList", mahasiswa);
@@ -80,7 +80,7 @@ public class KelasDetailController {
             return new ModelAndView("redirect:/kelasdetail");
         }
 
-        ModelAndView view = new ModelAndView("kelas/detail.html");
+        ModelAndView view = new ModelAndView("kelas/detail");
         view.addObject("data", kelasDetailModel);
         return view;
 

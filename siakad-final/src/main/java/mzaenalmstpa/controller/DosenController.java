@@ -34,7 +34,7 @@ public class DosenController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("dosen/index.html");
+        ModelAndView view = new ModelAndView("dosen/index");
         List<DosenModel> result = dosenService.get();
         view.addObject("dataList", result);
         return view;
@@ -42,7 +42,7 @@ public class DosenController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("dosen/add.html");
+        ModelAndView view = new ModelAndView("dosen/add");
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
         view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
         view.addObject("dosen", new DosenModel());
@@ -52,7 +52,7 @@ public class DosenController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("dosen") DosenModel request, BindingResult result) {
-        ModelAndView view = new ModelAndView("dosen/add.html");
+        ModelAndView view = new ModelAndView("dosen/add");
         if (Boolean.FALSE.equals(dosenService.validNip(request))){
             FieldError fieldError = new FieldError("dosen","code","Code "+request.getNip() +" already exust");
             result.addError(fieldError);
@@ -78,7 +78,7 @@ public class DosenController {
             return new ModelAndView("redirect:/dosen");
         }
 
-        ModelAndView view = new ModelAndView("dosen/edit.html");
+        ModelAndView view = new ModelAndView("dosen/edit");
         view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
         view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
         view.addObject("dosen", dosen);
@@ -88,7 +88,7 @@ public class DosenController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("dosen") DosenModel request, BindingResult result) {
         if (result.hasErrors()) {
-            ModelAndView view = new ModelAndView("dosen/edit.html");
+            ModelAndView view = new ModelAndView("dosen/edit");
             view.addObject("genderList", lookupService.getByGroup(Constants.GENDER));
             view.addObject("byPosition", Comparator.comparing(LookupEntity::getPosition));
             view.addObject("dosen", request);
@@ -105,7 +105,7 @@ public class DosenController {
             return new ModelAndView("redirect:/dosen");
         }
 
-        ModelAndView view = new ModelAndView("dosen/detail.html");
+        ModelAndView view = new ModelAndView("dosen/detail");
         view.addObject("data", dosen);
         return view;
     }

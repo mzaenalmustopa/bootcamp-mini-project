@@ -38,7 +38,7 @@ public class KelasController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("kelas/index.html");
+        ModelAndView view = new ModelAndView("kelas/index");
         List<KelasModel> result = service.get();
         view.addObject("dataList", result);
         return view;
@@ -46,7 +46,7 @@ public class KelasController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("kelas/add.html");
+        ModelAndView view = new ModelAndView("kelas/add");
 
         view.addObject("hariList", lookupService.getByGroup("HARI"));
         view.addObject("semesterList", lookupService.getByGroup("SEMESTER"));
@@ -66,7 +66,7 @@ public class KelasController {
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("kelas") KelasModel request, BindingResult result){
-        ModelAndView view = new ModelAndView("kelas/add.html");
+        ModelAndView view = new ModelAndView("kelas/add");
         if (Boolean.FALSE.equals(service.validKode(request))){
             FieldError fieldError = new FieldError("kelas","kode","invalid code");
             result.addError(fieldError);
@@ -105,7 +105,7 @@ public class KelasController {
         List<MataKuliahModel> matakuliah = mataKuliahService.get();
         List<DosenModel> dosen = dosenService.get();
 
-        ModelAndView view = new ModelAndView("kelas/edit.html");
+        ModelAndView view = new ModelAndView("kelas/edit");
         view.addObject("hariList", lookupService.getByGroup("HARI"));
         view.addObject("semesterList", lookupService.getByGroup("SEMESTER"));
         view.addObject("onlineList", lookupService.getByGroup("ONLINE"));
@@ -124,7 +124,7 @@ public class KelasController {
             List<MataKuliahModel> matakuliah = mataKuliahService.get();
             List<DosenModel> dosen = dosenService.get();
 
-            ModelAndView view = new ModelAndView("kelas/edit.html");
+            ModelAndView view = new ModelAndView("kelas/edit");
             view.addObject("hariList", lookupService.getByGroup("HARI"));
             view.addObject("semesterList", lookupService.getByGroup("SEMESTER"));
             view.addObject("onlineList", lookupService.getByGroup("ONLINE"));
@@ -146,7 +146,7 @@ public class KelasController {
             return new ModelAndView("redirect:/kelas");
         }
 
-        ModelAndView view = new ModelAndView("kelas/detail.html");
+        ModelAndView view = new ModelAndView("kelas/detail");
         view.addObject("data", kelasModel);
         return view;
     }

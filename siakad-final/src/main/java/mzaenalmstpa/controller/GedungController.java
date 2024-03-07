@@ -25,7 +25,7 @@ public class GedungController {
 
     @GetMapping
     public ModelAndView index(){
-        ModelAndView view = new ModelAndView("gedung/index.html");
+        ModelAndView view = new ModelAndView("gedung/index");
         List<GedungModel> result = service.get();
         view.addObject("dataList", result);
         return view;
@@ -33,14 +33,14 @@ public class GedungController {
 
     @GetMapping("/add")
     public ModelAndView add(){
-        ModelAndView view = new ModelAndView("gedung/add.html");
+        ModelAndView view = new ModelAndView("gedung/add");
         view.addObject("gedung", new GedungModel());
         return view;
     }
 
     @PostMapping("/save")
     public ModelAndView save(@Valid @ModelAttribute("gedung") GedungModel request, BindingResult result){
-        ModelAndView view = new ModelAndView("gedung/add.html");
+        ModelAndView view = new ModelAndView("gedung/add");
         if (Boolean.FALSE.equals(service.validCode(request))){
             FieldError fieldError = new FieldError("gedung","code","Code "+ request.getCode() +" already exist");
             result.addError(fieldError);
@@ -64,7 +64,7 @@ public class GedungController {
             return new ModelAndView("redirect:/gedung");
         }
 
-        ModelAndView view = new ModelAndView("gedung/edit.html");
+        ModelAndView view = new ModelAndView("gedung/edit");
         view.addObject("gedung", gedung);
         return view;
     }
@@ -72,7 +72,7 @@ public class GedungController {
     @PostMapping("/update")
     public ModelAndView update(@Valid @ModelAttribute("gedung") GedungModel request, BindingResult result){
         if (result.hasErrors()){
-            ModelAndView view = new ModelAndView("gedung/edit.html");
+            ModelAndView view = new ModelAndView("gedung/edit");
             view.addObject("gedung", request);
             return view;
         }
@@ -86,7 +86,7 @@ public class GedungController {
         if (gedung == null){
             return new ModelAndView("redirect:/gedung");
         }
-        ModelAndView view = new ModelAndView("gedung/detail.html");
+        ModelAndView view = new ModelAndView("gedung/detail");
         view.addObject("data", gedung);
         return view;
     }
