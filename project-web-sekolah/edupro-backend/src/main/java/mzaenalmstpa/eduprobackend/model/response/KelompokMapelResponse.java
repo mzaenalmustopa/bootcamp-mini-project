@@ -1,13 +1,10 @@
 package mzaenalmstpa.eduprobackend.model.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import mzaenalmstpa.eduprobackend.constant.DataStatus;
 
-@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class KelompokMapelResponse {

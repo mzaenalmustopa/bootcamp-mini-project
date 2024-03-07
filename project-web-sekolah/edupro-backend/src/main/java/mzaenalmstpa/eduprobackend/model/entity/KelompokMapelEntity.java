@@ -10,7 +10,7 @@ import mzaenalmstpa.eduprobackend.constant.DataStatus;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tbl_klmpok_mapel")
+@Table(name = "tbl_kelompok_mapel")
 public class KelompokMapelEntity extends BlankBaseEntity{
 
     @EmbeddedId

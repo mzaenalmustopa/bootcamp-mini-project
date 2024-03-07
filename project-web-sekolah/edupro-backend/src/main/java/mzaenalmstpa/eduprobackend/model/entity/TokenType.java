@@ -1,2 +1,5 @@
-package mzaenalmstpa.eduprobackend.model.entity;public class TokenType {
+package mzaenalmstpa.eduprobackend.model.entity;
+
+public enum TokenType {
+    BEARER
 }
