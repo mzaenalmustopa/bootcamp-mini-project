@@ -19,6 +19,9 @@ target/
 *.iml
 *.ipr
 
+#igonore
+/src/main/resources/templates/test/test1.html
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -31,4 +34,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/templates/test
